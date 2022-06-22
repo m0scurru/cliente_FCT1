@@ -1,0 +1,17 @@
+<div class="modal-header">
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true" hidden>Cerrar modal</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <form>
+    <div class="form-group">
+      <div class="input-group">{{content}}</div>
+    </div>
+  </form>
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-primary" (click)="activeModal.close('Save click')">Aceptar</button>
+</div>

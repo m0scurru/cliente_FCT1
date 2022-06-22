@@ -1,0 +1,17 @@
+<!-- Títulos de las secciones -->
+<div class="row">
+  <div class="page-header d-flex justify-content-between pb-3">
+    <h1 class="h2">Notificaciones</h1>
+    <button type="button" class="btn btn-outline-default mr-2" placement="left"
+      ngbTooltip="Haga clic para acceder a la ayuda de esta sección">?</button>
+  </div>
+</div>
+
+<!-- Contenido de las secciones -->
+<div class="card p-3">
+  <ul class="list-group">
+    <li *ngFor="let notificacion of arrayNotificaciones" class="list-group-item">
+      <span [ngClass]="cambiarEstilo(notificacion.leido)">{{ notificacion.mensaje }}</span>
+    </li>
+  </ul>
+</div>

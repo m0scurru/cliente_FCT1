@@ -1,0 +1,17 @@
+<div class="card">
+    <div class="modal-header">
+        <h1 class="modal-title fs-4">Subir {{this.tipoAnexo}}: </h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="CloseModal()"></button>
+    </div>
+    <div class="modal-body">
+        <form class="col-12">
+            <div class="row py-4 px-2 d-flex justify-content-center">
+                <input type="file" id="file" (change)="upload($event)" class="w-50" aria-label=" Enviar documento">
+            </div>
+            <hr class="my-3">
+            <div class="row d-flex align-items-center justify-content-center">
+                <input type="submit" tittle="aceptar" value="Aceptar" (click)="enviarAnexo() " class="w-50 btn btn-primary btn-md" ngbTooltip="Aceptar " aria-label="Aceptar ">
+            </div>
+        </form>
+    </div>
+</div>

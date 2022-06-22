@@ -1,0 +1,12 @@
+.bi {
+  vertical-align: -0.125em;
+  pointer-events: none;
+  fill: currentColor;
+}
+
+//Color default para los botones que contradigan la acción principal
+$custom-colors: (
+  "default": #000000,
+);
+
+$theme-colors: map-merge($theme-colors, $custom-colors);

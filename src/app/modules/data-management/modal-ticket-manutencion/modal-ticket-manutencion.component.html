@@ -1,0 +1,44 @@
+<div class="card">
+  <div class="modal-header">
+    <h1 class="modal-title fs-4">{{this.titulo}} ticket</h1>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closeModal()"></button>
+  </div>
+  <!-- Cuerpo del modal -->
+  <div class="modal-body">
+    <form class="needs-validation" novalidate="" [formGroup]="datosFactura!" (ngSubmit)="onSubmit()">
+      <div class="row g-3">
+        <!-- #region Datos del alumno -->
+        <div class="col-md-12 mb-3">
+          <h2 class="fs-5">Gastos de manutención</h2>
+        </div>
+        <div class="col-6">
+          <label class="form-label fw-bold {{this.required}}" for="fecha">Fecha</label>
+          <input class="form-control" [readonly]="this.readonly" formControlName="fecha" id="fecha" type="date">
+        </div>
+        <div class="col-6">
+          <label class="form-label fw-bold {{this.required}}" for="importe">Importe</label>
+          <div class="input-group">
+            <input id="importe" type="text" class="form-control" [readonly]="this.readonly" formControlName="importe" placeholder="0"
+              aria-label="Importe" aria-describedby="addOnImporte">
+            <span class="input-group-text" id="addOnImporte">€</span>
+          </div>
+        </div>
+        <div class="col-12">
+          <label class="form-label fw-bold" for="destino">Imagen del ticket</label>
+          <input accept="image/*" (change)="this.cambiarImagenTicket($event, this.formulario)"
+            class="form-control" [hidden]="this.readonly" type="file" id="formFile">
+        </div>
+        <img id="imagen_ticket" class="col-12 rounded cover"
+          [src]="this.formulario['imagen_ticket'].value != undefined ? this.formulario['imagen_ticket'].value : ''"
+          role="button" alt="" height="200">
+        <!-- #endregion -->
+      </div>
+
+      <!-- Botones -->
+      <div class="row d-flex align-items-center justify-content-center modal-footer mt-3">
+        <input class="w-50 btn btn-outline-primary btn-md" type="submit" value="Guardar cambios"
+        [hidden]="this.readonly" [disabled]="!modified ? true : null">
+      </div>
+    </form>
+  </div>
+</div>

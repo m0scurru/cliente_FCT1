@@ -1,0 +1,23 @@
+.signature-container {
+    // border-style: dashed;
+    border-width: 1px;
+    margin-bottom: 20px;
+    background-color: rgb(240, 240, 240);
+    cursor: crosshair;
+}
+
+.buttons {
+    float: right;
+    button {
+        margin-right: 10px;
+        padding: 10px;
+        border-radius: 5px;
+    }
+}
+
+canvas {
+    max-width:300px !important; 
+}
+signature-pad{
+    max-width:300px !important;
+}

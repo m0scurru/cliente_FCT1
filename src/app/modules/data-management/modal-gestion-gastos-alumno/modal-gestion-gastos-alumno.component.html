@@ -1,0 +1,100 @@
+<div class="card">
+  <div class="modal-header">
+    <h1 class="modal-title fs-4">Editar información</h1>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closeModal()"></button>
+  </div>
+  <!-- Cuerpo del modal -->
+  <div class="modal-body">
+    <form class="needs-validation" novalidate="" [formGroup]="datosAlumno!" (ngSubmit)="onSubmit()">
+      <div class="row g-3">
+        <!-- #region Datos del alumno -->
+        <div class="col-md-12">
+          <h2 class="fs-5">Datos del alumno</h2>
+        </div>
+
+        <div class="col-md-6">
+          <label for="residenciaAlumno" class="form-label fw-bold required">Residencia del alumno</label>
+          <select (change)="restablecerCampos()" class="form-select" id="residenciaAlumno"
+            formControlName="residencia_alumno">
+            <option value="Localidad del centro educativo">Localidad del centro educativo</option>
+            <option value="Localidad distinta a la del centro educativo">Localidad distinta a la del centro educativo
+            </option>
+          </select>
+          <div *ngIf="this.formulario['residencia_alumno'].invalid && this.submitted"
+            class="text-danger bg-white rounded border border-2 border-danger p-2">
+            Este campo es obligatorio
+          </div>
+        </div>
+
+        <div class="col-md-6" *ngIf="this.formulario['residencia_alumno'].value == 'Localidad del centro educativo'">
+          <label for="ubicacionCentroTrabajo" class="form-label fw-bold required">Ubicación del centro trabajo</label>
+          <select class="form-select" id="ubicacionCentroTrabajo" formControlName="ubicacion_centro_trabajo">
+            <option value="Dentro del núcleo urbano">Dentro del núcleo urbano</option>
+            <option value="Fuera del núcleo urbano">Fuera del núcleo urbano</option>
+            <option value="En otra localidad">En otra localidad</option>
+          </select>
+          <div *ngIf="this.formulario['ubicacion_centro_trabajo'].invalid && this.submitted"
+            class="text-danger bg-white rounded border border-2 border-danger p-2">
+            Este campo es obligatorio
+          </div>
+        </div>
+
+        <div class="row mt-3"
+          *ngIf="!this.formulario['ubicacion_centro_trabajo'].value.includes('Dentro'); else sinGasto">
+          <div class="col-md-12">
+            <h2 class="fs-5">Distancias</h2>
+          </div>
+          <div class="col-md-6" *ngIf="this.formulario['residencia_alumno'].value == 'Localidad del centro educativo'">
+            <label for="distanciaCedCtra" class="form-label fw-bold required">Del centro educativo hasta el centro
+              trabajo</label>
+            <div class="input-group">
+              <input type="text" class="form-control" id="distanciaCedCtra"
+                formControlName="distancia_centroEd_centroTra" placeholder="0" aria-describedby="distanciaCedCtraKM">
+              <span class="input-group-text" id="distanciaCedCtraKM">Km</span>
+            </div>
+            <div *ngIf="this.formulario['distancia_centroEd_centroTra'].invalid && this.submitted"
+              class="text-danger bg-white rounded border border-2 border-danger p-2">
+              Este campo es obligatorio
+            </div>
+          </div>
+
+          <div class="col-md-6" *ngIf="this.formulario['residencia_alumno'].value != 'Localidad del centro educativo'">
+            <label for="distanciaCedRes" class="form-label fw-bold required">Del domicilio al centro educativo</label>
+            <div class="input-group">
+              <input type="text" class="form-control" id="distanciaCedRes"
+                formControlName="distancia_centroEd_residencia" placeholder="0" aria-describedby="distanciaCedResKM">
+              <span class="input-group-text" id="distanciaCedResKM">Km</span>
+            </div>
+            <div *ngIf="this.formulario['distancia_centroEd_residencia'].invalid && this.submitted"
+              class="text-danger bg-white rounded border border-2 border-danger p-2">
+              Este campo es obligatorio
+            </div>
+          </div>
+          <div class="col-md-6" *ngIf="this.formulario['residencia_alumno'].value != 'Localidad del centro educativo'">
+            <label for="distanciaCtraRes" class="form-label fw-bold required">Del domicilio al centro de trabajo</label>
+            <div class="input-group">
+              <input type="text" class="form-control" id="distanciaCtraRes"
+                formControlName="distancia_centroTra_residencia" placeholder="0" aria-describedby="distanciaCtraResKM">
+              <span class="input-group-text" id="distanciaCtraResKM">Km</span>
+            </div>
+            <div *ngIf="this.formulario['distancia_centroTra_residencia'].invalid && this.submitted"
+              class="text-danger bg-white rounded border border-2 border-danger p-2">
+              Este campo es obligatorio
+            </div>
+          </div>
+        </div>
+
+        <ng-template #sinGasto>
+          <span class="form-label h5">No tiene derecho a compensación por desplazamiento</span>
+        </ng-template>
+        <!-- #endregion -->
+      </div>
+
+      <!-- Botones -->
+      <div class="row d-flex align-items-center justify-content-center modal-footer mt-3">
+        <input class="w-50 btn btn-outline-primary btn-md" type="submit" value="Guardar cambios"
+          [disabled]="!modified ? true : null">
+      </div>
+    </form>
+  </div>
+</div>

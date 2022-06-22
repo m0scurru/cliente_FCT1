@@ -1,0 +1,44 @@
+<div class="container-fluid">
+  <div class="row d-flex justify-content-center align-items-center h-100">
+    <!--Panel de login-->
+    <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+      <div class="card bg-dark text-white" style="border-radius: 1rem;">
+        <div class="card-body p-5 text-center">
+          <form [formGroup]="login" (ngSubmit)="onSubmit()" class="mb-md-2 mt-md-1 pb-2">
+            <img height="70" src="{{imgLogo}}" alt="Logo de la página">
+            <h1 class="mb-4 mt-3 h6">Introduce tu email y contraseña</h1>
+            <!--Email-->
+            <div class="form-outline form-white mb-4">
+              <label class="form-label" for="correo">Correo</label>
+              <input type="email" id="correo" formControlName="email" class="form-control form-control-lg" />
+              <div *ngIf="submitted && formulario['email'].errors">
+                <div *ngIf="formulario['email'].errors['required']"
+                  class="h6 text-danger bg-white rounded border border-2 border-danger p-2">El email no puede estar
+                  vacío.</div>
+                <div *ngIf="formulario['email'].errors['email']"
+                  class="h6 text-danger bg-white rounded border border-2 border-danger p-2">El email introducido no
+                  tiene un formato válido.</div>
+              </div>
+            </div>
+            <!--Contraseña-->
+            <div class="form-outline form-white mb-4">
+              <label class="form-label" for="pass">Contraseña</label>
+              <input type="password" id="pass" formControlName="password" class="form-control form-control-lg" />
+              <div *ngIf="submitted && formulario['password'].errors">
+                <div *ngIf="formulario['password'].errors['required']"
+                  class="h6 text-danger bg-white rounded border border-2 border-danger p-2">La contraseña no puede estar
+                  vacía.</div>
+              </div>
+            </div>
+            <!--Botones y demás-->
+            <p class="small mb-5 pb-lg-2"><a class="text-secondary" href="#!">¿Contraseña olvidada?</a></p>
+            <button class="btn btn-outline-light btn-primary btn-lg px-5" type="submit">Entrar</button>
+          </form>
+          <div>
+            <p class="mb-0">¿No tienes cuenta? <a href="#!" class="text-secondary fw-bold">Registrate</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,130 @@
+<!-- Títulos de las secciones -->
+<div class="row">
+  <div class="page-header d-flex justify-content-between pb-3">
+    <h1 class="h2">Gestión de empresas</h1>
+    <button type="button" class="btn btn-outline-default mr-2" placement="left"
+      ngbTooltip="Haga clic para acceder a la ayuda de esta sección" (click)="abrirAyuda()">?</button>
+  </div>
+</div>
+
+<!-- Contenido de las secciones -->
+<div class="card p-3">
+  <div class="row p-2">
+    <!-- Botones -->
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="data-management/registro-empresa" aria-label="Registrar empresa"
+        class="btn btn-outline-primary float-start">
+        Nueva empresa
+      </a>
+      <!-- Aún sin implementar -->
+      <div class="btn-group float-end" role="group" aria-label="Filtros de búsqueda según convenio">
+        <input type="radio" class="btn-check" name="filtro" id="todas" autocomplete="off" checked>
+        <label class="btn btn-outline-dark" for="todas">Mostrar todas</label>
+
+        <input type="radio" class="btn-check" name="filtro" id="con_convenio" autocomplete="off">
+        <label class="btn btn-outline-dark" for="con_convenio">Con convenio</label>
+
+        <input type="radio" class="btn-check" name="filtro" id="sin_convenio" autocomplete="off">
+        <label class="btn btn-outline-dark" for="sin_convenio">Sin convenio</label>
+      </div>
+    </div>
+  </div>
+  <!-- Tabla -->
+  <div class="p-2 table-responsive">
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped table-hover">
+      <thead class="table-primary text-white">
+        <tr>
+          <th scope="col">CIF</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Localidad</th>
+          <th scope="col" class="nosort">Acciones</th>
+          <th scope="col" class="nosort">Convenio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let empresa of empresas">
+          <!-- #region Datos -->
+          <td scope="col" class="align-middle cursor-pointer" attr.aria-label="Ver en detalle {{empresa.nombre}}"
+            (click)="mostrarEmpresa(empresa, false)">{{empresa.cif}}</td>
+          <td scope="col" class="align-middle cursor-pointer" attr.aria-label="Ver en detalle {{empresa.nombre}}"
+            (click)="mostrarEmpresa(empresa, false)">{{empresa.nombre}}</td>
+          <td scope="col" class="align-middle cursor-pointer" attr.aria-label="Ver en detalle {{empresa.nombre}}"
+            (click)="mostrarEmpresa(empresa, false)">{{empresa.localidad}}</td>
+          <!-- #endregion -->
+          <!-- Acciones sobre la empresa -->
+          <td scope="col" class="align-middle">
+            <button class="btn btn-outline-warning p-2 py-1 m-1" (click)="mostrarEmpresa(empresa, true)"
+              placement="left" ngbTooltip="Editar empresa" attr.aria-label="Editar {{empresa.nombre}}">
+              <svg class="bi" width="16" height="16">
+                <use xlink:href="#lapiz" />
+              </svg>
+            </button>
+            <button class="btn btn-outline-danger px-2 py-1 m-1" (click)="deleteEmpresa(empresa)" placement="left"
+              ngbTooltip="Eliminar empresa" attr.aria-label="Eliminar {{empresa.nombre}}">
+              <svg class="bi" width="16" height="16">
+                <use xlink:href="#papelera" />
+              </svg>
+            </button>
+          </td>
+          <!-- Acciones sobre el convenio -->
+          <td scope="col" class="align-middle">
+            <ng-container *ngIf="!empresa.convenio">
+              <button class="btn btn-outline-success p-2 py-1 m-1"
+                ngbTooltip="Dar de alta {{ empresa.es_privada ? 'convenio' : 'acuerdo'}}"
+                attr.aria-label="Dar de alta {{ empresa.es_privada ? 'convenio' : 'acuerdo'}} con {{empresa.nombre}}"
+                placement="left" (click)="mostrarConvenio(empresa, 0)">
+                <svg class="bi" width="16" height="16">
+                  <use xlink:href="#A0" />
+                </svg>
+              </button>
+            </ng-container>
+            <ng-container *ngIf="empresa.convenio">
+              <button class="btn btn-outline-primary p-2 py-1 m-1"
+                ngbTooltip="Ver {{ empresa.es_privada ? 'convenio' : 'acuerdo'}} en detalle"
+                attr.aria-label="Ver {{ empresa.es_privada ? 'convenio' : 'acuerdo'}} con {{empresa.nombre}}"
+                placement="left" (click)="mostrarConvenio(empresa, 1)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye"
+                  viewBox="0 0 16 16">
+                  <path
+                    d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
+                  <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
+                </svg>
+              </button>
+              <button class="btn btn-outline-warning p-2 py-1 m-1"
+                ngbTooltip="Editar {{ empresa.es_privada ? 'convenio' : 'acuerdo'}}"
+                attr.aria-label="Editar {{ empresa.es_privada ? 'convenio' : 'acuerdo'}} con {{empresa.nombre}}"
+                placement="left" (click)="mostrarConvenio(empresa, 2)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi"
+                  viewBox="0 0 16 16">
+                  <use xlink:href="#editar_documento" />
+                </svg>
+              </button>
+              <button *ngIf="empresa.isConvenioRenovable()" class="btn btn-outline-secondary p-2 py-1 m-1"
+                ngbTooltip="Renovar {{ empresa.es_privada ? 'convenio' : 'acuerdo'}}"
+                attr.aria-label="Renovar {{ empresa.es_privada ? 'convenio' : 'acuerdo'}} con {{empresa.nombre}}"
+                placement="left" (click)="mostrarConvenio(empresa, 3)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                  class="bi bi-arrow-repeat" viewBox="0 0 16 16">
+                  <path
+                    d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z" />
+                  <path fill-rule="evenodd"
+                    d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z" />
+                </svg>
+              </button>
+              <button class="btn btn-outline-danger p-2 py-1 m-1"
+                ngbTooltip="Anular {{ empresa.es_privada ? 'convenio' : 'acuerdo'}}"
+                attr.aria-label="Anular {{ empresa.es_privada ? 'convenio' : 'acuerdo'}} con {{empresa.nombre}}"
+                placement="left" (click)="anularConvenio(empresa)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg"
+                  viewBox="0 0 16 16">
+                  <path
+                    d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
+                </svg>
+              </button>
+            </ng-container>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,115 @@
+<div class="modal-header">
+  <h1 class="modal-title fs-2">Manual de gestión de alumnos</h1>
+  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar" (click)="closeModal()"></button>
+</div>
+<div class="modal-body p-3">
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      <h2 class="fs-4 text-info">Vistazo general</h2>
+      <p>En la vista de gestión de alumnos se muestra el listado de alumnos pertenecientes al centro educativo al que
+        pertenece la persona que inició sesión en la aplicación. Es decir, usted sólo podrá gestionar los alumnos de su
+        centro educativo.
+      </p>
+      <p>En la siguiente imagen puede observar cada uno de los elementos más importantes de la vista, numerados</p>
+      <img class="img-fluid" src="/assets/Manuales/gestion-alumnos/0.jpg"
+        alt="Captura de pantalla con la vista de gestión de alumnos">
+    </li>
+    <li class="list-group-item">
+      <h2 class="fs-4 text-info">1. Registrar alumno</h2>
+      <div class="d-flex justify-content-between align-items-center">
+        <img src="/assets/Manuales/gestion-alumnos/1.png"
+          alt="Captura de pantalla con el botón para registrar un alumno" class="img-fluid me-3">
+        <div>
+          <p>Este botón, situado en la esquina superior derecha, permite registrar un alumno en la aplicación. Deberá,
+            además, ser matriculado en un grupo para el presente curso académico</p>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <h2 class="fs-4 text-info">2. Cantidad de registros a mostrar</h2>
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+          <p>Haga clic sobre el desplegable para seleccionar cuántos registros quiere ver en cada página de la tabla.
+          </p>
+          <p class="m-0">Mostrar más de 50 registros puede reducir el rendimiento de la aplicación. Utilice los botones
+            de la esquina inferior derecha de la pantalla para navegar por las páginas de datos.</p>
+        </div>
+        <img src="/assets/Manuales/gestion-alumnos/2.png" alt="Captura de pantalla del desplegable de mostrar registros"
+          class="img-fluid ms-3 border border-dark">
+      </div>
+      <div class="d-flex justify-content-center mt-3">
+        <img src="/assets/Manuales/gestion-alumnos/3.png" alt="Captura de pantalla del desplegable de mostrar registros"
+          class="img-fluid ms-3 border border-dark">
+      </div>
+
+    </li>
+    <li class="list-group-item">
+      <h2 class="fs-4 text-info">3. Filtros por campo</h2>
+      <p>Filtre los resultados de la tabla usando la barra de búsquedas en la parte superior derecha.</p>
+      <p class="m-0">Puede filtrar a alumnos por cualquiera de los campos de la tabla: Código de alumno, nombre y
+        apellidos o e-mail de contacto
+
+        <img src="/assets/Manuales/gestion-alumnos/buscar.gif"
+          alt="GIF que ejemplifica la búsqueda en la tabla de gestión de alumnos"
+          class="img-fluid me-3 border border-dark">
+      </p>
+    </li>
+    <li class="list-group-item">
+      <h2 class="fs-4 text-info">4. Ordenar según campo</h2>
+      <p>Puede ordenar a los alumnos en orden ascendente o descendente de cualquiera de los campos de la tabla haciendo
+        clic sobre el título de la columna</p>
+      <p class="mt-3">Si desea cambiar el orden, clickee de nuevo sobre el mismo título</p>
+      <img src="/assets/Manuales/gestion-alumnos/4.png"
+        alt="Captura de pantalla que muestra la zona donde hay que hacer clic para ordenar la columna 'Nombre' por orden alfabético"
+        class="img-fluid me-3 border border-dark">
+    </li>
+    <li class="list-group-item">
+      <h2 class="fs-4 text-info">5. Ver detalles de un alumno</h2>
+      <p>Haga clic sobre una fila de la tabla para ver los datos del alumno correspondiente. Se abrirá una ventana por
+        encima de la tabla, con el fondo sombreado. Si desea salir de esta ventana, haga clic en el botón con forma de
+        aspa, en la parte superior de dicha ventana.</p>
+      <div class="d-flex justify-content-center"><img src="/assets/Manuales/gestion-alumnos/5.png"
+          alt="Captura de pantalla que muestra el cursor sobre una fila de la tabla"
+          class="img-fluid border border-dark "></div>
+    </li>
+    <li class="list-group-item">
+      <h3 class="fs-5 text-info">5.1. Descargar Anexo FEM05</h3>
+      <p>En esta ventana, haga clic sobre el botón "Anexo FEM05" para descargar la ficha de informació del alumno.
+        Dicha ficha deberá ser firmada en primer lugar por el alumno y finalmente por la dirección del centro.
+      </p>
+    </li>
+    <li class="list-group-item">
+      <h2 class="fs-4 text-info">6. Editar alumno</h2>
+      <div class="d-flex justify-content-between align-items-center">
+        <img src="/assets/Manuales/gestion-alumnos/editar.png"
+          alt="Captura de pantalla con el botón para editar un alumno" class="img-fluid me-3">
+        <div>
+          <p>Haga clic sobre el botón de editar (lapicero) para modificar los datos de un alumno.
+            legal.</p>
+          <p class="m-0">Se abrirá una ventana modal que le permitirá cambiar todos los datos del alumno. Los campos
+            obligatorios están marcados con un asterisco rojo (<strong class="required"></strong> )</p>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center">
+        <img src="/assets/Manuales/gestion-alumnos/6.png"
+          alt="Captura de pantalla que muestra el cursor sobre una fila de la tabla"
+          class="img-fluid border border-dark ">
+      </div>
+    </li>
+    <li class="list-group-item">
+      <h2 class="fs-4 text-info">7. Eliminar alumno</h2>
+      <div class="d-flex justify-content-between align-items-center">
+        <img src="/assets/Manuales/gestion-alumnos/borrar.png"
+          alt="Captura de pantalla con el botón para eliminar un alumno" class="img-fluid me-3">
+        <div>
+          <p>Haga clic sobre el botón de eliminar (cubo de basura) para eliminar de la aplicación los datos de un
+            alumno.</p>
+          <p class="m-0">Dado que es una acción definitiva, deberá confirmar la acción.</p>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-outline-primary" (click)="closeModal()">Volver</button>
+</div>

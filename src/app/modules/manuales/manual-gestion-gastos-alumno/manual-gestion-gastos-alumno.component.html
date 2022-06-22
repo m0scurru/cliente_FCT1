@@ -1,0 +1,64 @@
+<div class="modal-header">
+  <h1 class="modal-title fs-2">Manual de gestión de gastos (Vista alumno)</h1>
+  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar" (click)="closeModal()"></button>
+</div>
+<div class="modal-body p-3">
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      <h2 class="fs-4 text-info">Vistazo general</h2>
+      <p>En la vista de gestión de gastos se muestra el listado de facturas de transporte y manutención, así como el
+        recuento de los subtotales de los gastos acumulados.
+      </p>
+      <p>En la siguiente imagen puede observar cada uno de los elementos más importantes de la vista, numerados</p>
+      <img class="img-fluid" src="/assets/Manuales/gestion-gastos-alumno/0.png"
+        alt="Captura de pantalla con la vista de gestión de gastos alumnos">
+    </li>
+    <li class="list-group-item">
+      <h2 class="fs-4 text-info">1. Editar información</h2>
+      <p>Permite modificar los datos del alumno en relación a la gestión de gastos (residencia del alumno con respecto
+        al centro educativo, ubicación del centro de trabajo y distancias asociadas)</p>
+      <img src="/assets/Manuales/gestion-gastos-alumno/modal1.png"
+        alt="Captura de pantalla con el modal de modificación de datos" class="img-fluid m-3">
+      <img src="/assets/Manuales/gestion-gastos-alumno/modal2.png"
+        alt="Captura de pantalla con el modal de modificación de datos" class="img-fluid m-3">
+    </li>
+    <li class="list-group-item">
+      <h2 class="fs-4 text-info">2. Cambiar de pestaña</h2>
+      <p>Permite visualizar, o bien, los tickets y facturas de transporte o los de manutención. Cada sección cuenta con
+        una tabla en la que se pueden añadir, editar o eliminar tickets.
+        En la sección "Transporte", se permite añadir el número de días en los que se ha viajado en vehículo privado y
+        el dinero a recibir por parte del alumno a consecuencia de este gasto se indica mediante la fórmula matemática
+        adjunta a este campo.
+      </p>
+      <h2 class="fs-5 text-info">2.1. Desplazamiento</h2>
+      <img src="/assets/Manuales/gestion-gastos-alumno/1.png"
+        alt="Captura de pantalla de la gestión de tickets de desplazamiento" class="img-fluid m-3">
+      <p>En esta sección se permite agregar un billete dedesplazamiento en transporte público a cualquier alumno de la lista. Se abrirá
+        una ventana en la que podrá introducir el importe del mismo y añadir una imagen a modo de comprobante.
+      </p>
+      <img class="img-fluid m-3" src="/assets/Manuales/gestion-gastos-profesor/2.png"
+        alt="Imagen de la ventana modal que se abre cuando se inserta un nuevo ticket de transporte" />
+      <h2 class="fs-5 text-info">2.2. Manutención</h2>
+      <img src="/assets/Manuales/gestion-gastos-alumno/2.png"
+        alt="Captura de pantalla de la gestión de tickets de manutención" class="img-fluid m-3">
+      <p>Por norma general, la sección "Otros gastos" del Anexo VI se refiere a gastos de manutención. Este botón
+        permite agregar un ticket de gastos de comida al que se le podrá adjunar una imagen del mismo a modo de
+        comprobante, así como el importe.
+      </p>
+      <img class="img-fluid me-3" src="/assets/Manuales/gestion-gastos-profesor/3.png"
+        alt="Imagen de la ventana modal que se abre cuando se inserta un nuevo ticket de transporte" />
+    </li>
+    <li class="list-group-item">
+      <h2 class="fs-4 text-info">3. Generar y subir Anexo V</h2>
+      <div>
+        <p>En este grupo de botones, el botón de la izquierda genera y descarga el anexo de justificación de recibí de
+          dinero por parte del centro educativo.
+          El botón de la derecha permite subir el Anexo V firmado por parte del alumno.
+        </p>
+      </div>
+    </li>
+  </ul>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-outline-primary" (click)="closeModal()">Volver</button>
+</div>

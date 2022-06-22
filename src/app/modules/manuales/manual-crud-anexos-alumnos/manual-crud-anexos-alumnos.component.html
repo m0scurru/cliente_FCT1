@@ -1,0 +1,50 @@
+<div class="modal-header">
+    <h1 class="modal-title fs-2">Manual de la lista de Anexos </h1>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="CloseModal()"></button>
+</div>
+<div class="modal-body">
+    <p class="text-info"><b>Esto es una ayuda para poder manejar la lista de Anexos</b></p>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+            <h2 class="fs-4 text-info">Vistazo general</h2>
+            <p>Esta vista muestra una lista de anexos asociados a un alumno
+            </p>
+        </li>
+    </ul>
+
+    <ul class="list-group list-group-flush">
+        <p class="text-info pt-3 fw-underline"><b>Explicación de los campos:</b></p>
+        <li class="pt-3 list-group-item">
+            <p>Este campo nos muestra el típo de anexo</p>
+            <img class="pb-3 img-fluid me-3" src="../../../../assets/Manuales/crud-anexos-alumnos/anexo.png" alt="Esto nos muestra el tipo de anexo">
+        </li>
+        <li class="pt-3 list-group-item">
+            <p>Este campo nos muestra si el anexo en cuestión ya ha sido rellenado o no</p>
+            <img class="pb-3 img-fluid me-3" src="../../../../assets/Manuales/crud-anexos-alumnos/relleno.png" alt="Esto nos muestra si el anexo se ha rellenado o no">
+        </li>
+        <li class="pt-3 list-group-item">
+            <p>Este campo nos muestra las acciones disponibles</p>
+            <img class="pb-3 img-fluid me-3" src="../../../../assets/Manuales/crud-anexos-alumnos/acciones.png" alt="Esto nos muestra las acciones disponibles">
+        </li>
+        <p class="text-info pt-3"><b>Explicación de los botones:</b></p>
+        <li class=" pt-3 list-group-item">
+            <p>Con este botón podrás descargar todos los anexos que estan activos en la tabla</p>
+            <img class="pb-3 img-fluid me-3" src="../../../../assets/Manuales/crud-anexos-alumnos/descargarTodo.png" alt="Este botón podras descargar todos los anexos">
+        </li>
+        <li class=" pt-3 list-group-item">
+            <p>Con este botón podrás descargar un anexo en concreto, el que se muestra en la linea de la tabla donde se encuentre el botón</p>
+            <img class="pb-3 img-fluid me-3" src="../../../../assets/Manuales/crud-anexos/descargar.png" alt="Este botón podras descargar un anexo en concreto">
+        </li>
+        <li class="pt-3 list-group-item">
+            <p>Con este botón podrás subir un anexo en concreto a la nube</p>
+            <img class="pb-3 img-fluid me-3" src="../../../../assets/Manuales/crud-anexos-alumnos/subir.png" alt="Este botón podras subir un anexo a la nube">
+        </li>
+        <li class="pt-3 list-group-item">
+            <p>Con este botón podrás abrir un modal que, según del tipo de anexo que se trate, te permitirá completar unos datos u otros para posteriormente ser descargado</p>
+            <img class="pb-3 img-fluid me-3" src="../../../../assets/Manuales/crud-anexos-alumnos/rellenar.png" alt="Este botón podras abrir un modal que te permitirá rellenar datos segun el tipo de anexo">
+        </li>
+    </ul>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-outline-primary" (click)="CloseModal()">Volver</button>
+</div>

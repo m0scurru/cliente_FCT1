@@ -1,0 +1,68 @@
+<header class="sticky-top flex-md-nowrap p-0 text-light user-select-none bg-dark">
+  <div class="d-flex bd-highlight align-items-center">
+    <!--Menú hamburguesa (navbar)-->
+    <button class="navbar-toggler d-md-none text-white" type="button" data-bs-toggle="collapse"
+      data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="true" aria-label="Toggle navigation">
+      <svg width="20" height="20" class="bi">
+        <use xlink:href="#menu" />
+      </svg>
+    </button>
+    <!--Logotipo-->
+    <div class="me-auto p-2 bd-highlight">
+      <a href="#">
+        <img height="32" src="{{imgLogo}}" alt="Logo de la página">
+      </a>
+    </div>
+    <!--Notificaciones-->
+    <div class="p-2 bd-highlight">
+      <div class="text-end">
+        <div class="dropdown text-end">
+          <!--Campanita de notificaciones-->
+          <a href="#" class="d-block link-light text-decoration-none" id="dropdownNotificaciones"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <div class="d-flex align-items-center">
+              <svg width="20" height="20" class="bi me-1">
+                <use xlink:href="#campana" />
+              </svg>
+              <span class="badge rounded-pill bg-danger" *ngIf="numNotificaciones > 99">
+                99+
+              </span>
+              <span class="badge rounded-pill bg-danger" *ngIf="numNotificaciones <= 99">
+                {{ numNotificaciones }}
+              </span>
+            </div>
+          </a>
+          <!--Dropdown con las notificaciones-->
+          <ul class="dropdown-menu text-small" aria-labelledby="dropdownNotificaciones">
+            <li>
+              <h6 class="dropdown-header">Notificaciones:</h6>
+            </li>
+
+            <li *ngFor="let notificacion of arrayNotificaciones"><a class="dropdown-item" href="#">{{ notificacion.mensaje }}</a>
+              <hr class="dropdown-divider">
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!--Opciones de perfil-->
+    <div class="p-2 bd-highlight">
+      <div class="text-end ps-3">
+        <div class="dropdown text-end">
+          <a href="#" class="d-block link-light text-decoration-none dropdown-toggle" id="dropdownPerfil"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="https://picsum.photos/200" alt="mdo" width="32" height="32" class="rounded-circle">
+          </a>
+          <ul class="dropdown-menu text-small" aria-labelledby="dropdownPerfil">
+            <li><a class="dropdown-item" href="#">Perfil</a></li>
+            <li><a class="dropdown-item" href="#">Cambiar rol...</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><input type="button" class="dropdown-item" value="Salir" (click)='salir()'></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

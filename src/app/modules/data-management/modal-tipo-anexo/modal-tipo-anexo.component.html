@@ -1,0 +1,12 @@
+<!-- Anexo XV -->
+<div class="card" *ngIf="this.tipoAnexo == 'AnexoXV'">
+    <div class="modal-header">
+        <h1 class="modal-title fs-4">AnexoXV: </h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="CloseModal()"></button>
+    </div>
+    <div class="modal-body">
+        <div class="row d-flex align-items-center justify-content-center">
+            <input (click)="onSubmit()" class="w-50 btn btn-primary btn-md px-2 py-1 me-2" type="submit" value="Generar Anexo">
+        </div>
+    </div>
+</div>

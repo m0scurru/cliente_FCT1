@@ -1,0 +1,256 @@
+<!-- Títulos de las secciones -->
+<div class="row">
+  <div class="page-header d-flex justify-content-between pb-3">
+    <h1 class="h2">
+      <span role="button" (click)="volver()" *ngIf="this.loginStorageUser.getUser()?.dni != this.dniAlumno">
+        <svg width="20" height="20" class="bi me-2">
+          <use xlink:href="#flechaAtras" />
+        </svg>
+      </span>
+      Gestión de gastos<span class="h2" *ngIf="this.loginStorageUser.getUser()?.dni != this.dniAlumno"> de
+        {{this.gasto?.nombre_alumno}}</span>
+    </h1>
+    <button type="button" class="btn btn-outline-default mr-2" placement="left"
+      ngbTooltip="Haga clic para acceder a la ayuda de esta sección" (click)="abrirAyuda()">
+      ?
+    </button>
+  </div>
+</div>
+
+<!-- Cabecera de la sección -->
+<div class="card p-3" [hidden]="this.gasto == undefined">
+  <div [hidden]="this.gasto?.tipo_desplazamiento == 'No aplica'">
+    <div class="d-flex justify-content-between py-2">
+      <!-- Editar datos del alumno -->
+      <button (click)="editarDatosAlumno()" aria-label="Editar datos del alumno" class="btn btn-outline-primary"
+        placement="right" ngbTooltip="Editar datos">
+        <svg width="16" height="16" class="bi">
+          <use xlink:href="#lapiz" />
+        </svg>
+      </button>
+      <!-- Switch de gastos de desplazamiento y manutención -->
+      <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+        <input type="radio" class="btn-check" id="btnRadioDesplazamiento" autocomplete="off" checked [value]="1"
+          [(ngModel)]="isVisible" name="isVisible" [checked]="isSelected" />
+        <label class="btn btn-outline-dark" for="btnRadioDesplazamiento">Desplazamiento</label>
+
+        <input type="radio" class="btn-check" id="btnRadioManutencion" autocomplete="off" [value]="0"
+          [(ngModel)]="isVisible" name="isVisible" [checked]="!isSelected" />
+        <label class="btn btn-outline-dark" for="btnRadioManutencion">Manutención</label>
+      </div>
+      <!-- Generar y firmar (subir) Anexo V -->
+      <div class="btn-group" role="group" aria-label="Confirmación de cambios y subida de anexo firmado">
+        <button class="btn {{ gasto?.total_gastos == 0 ? 'text-muted' : 'btn-outline-success'}}"
+          ngbTooltip="Confirmar gastos y generar Anexo V" placement="top"
+          aria-label="Confirmar gastos y generar Anexo V" (click)="confirmarGastos()"
+          [disabled]="gasto?.total_gastos == 0 ? true : null">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg"
+            viewBox="0 0 16 16">
+            <path
+              d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z" />
+          </svg>
+        </button>
+        <label for="file" role="button" class="btn {{ gasto?.total_gastos == 0 ? 'text-muted' : 'btn-outline-primary'}} rounded-end"
+          ngbTooltip="Subir Anexo V firmado" placement="top" aria-label="Subir Anexo V firmado">
+          <a>
+            <svg class="bi" width="16" height="16">
+              <use xlink:href="#firma" />
+            </svg>
+          </a>
+        </label>
+        <input hidden role="button" type="file" id="file" accept="application/pdf" (change)="subirAnexoV($event)"
+          [disabled]="gasto?.total_gastos == 0 ? true : null">
+      </div>
+    </div>
+    <div class="d-flex justify-content-end pt-3">
+      <span>
+        Total gastos:
+        <strong>{{ this.gasto?.total_gastos?.toFixed(2) }} €</strong>
+      </span>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-12 d-flex justify-content-end">
+        <p>
+          &Sigma; Gastos de {{this.isVisible == 0 ? "manutención" : "desplazamiento"}}:
+          <strong>{{this.isVisible == 0 ? this.gasto?.sumatorio_gasto_manutencion?.toFixed(2) :
+            (this.gasto?.sumatorio_gasto_transporte_publico! +
+            this.gasto?.sumatorio_gasto_vehiculo_privado!).toFixed(2)}}
+            €</strong>
+        </p>
+      </div>
+    </div>
+    <!-- Vehículo propio -->
+    <section class="border border-primary rounded p-2" [hidden]="!this.isVisible">
+      <div class="row">
+        <div class="col-12 d-flex align-items-center justify-content-between py-2">
+          <h2 class="h4">Vehículo propio</h2>
+          <p>
+            &Sigma; Gastos vehículo propio:
+            <strong>{{this.gasto?.sumatorio_gasto_vehiculo_privado?.toFixed(2)}}€</strong>
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <label class="form-label" for="diasVehiculoPropio">Cantidad de días en los que se ha viajado en vehículo
+            propio</label>
+          <input type="text" class="form-control" id="diasVehiculoPropio" [(ngModel)]="this.dias_transporte_privado"
+            [value]="this.gasto?.dias_transporte_privado" />
+          <button (click)="actualizarDiasVehiculoPrivado()" class="btn btn-outline-primary mt-1">Guardar</button>
+        </div>
+        <div class="col-md-8">
+          <p class="float-end">&Sigma; Gastos vehículo propio = distancia hasta el centro de trabajo x 2 x 0,12</p>
+        </div>
+      </div>
+      <hr class="mt-4">
+      <!-- Transporte público -->
+      <div class="row">
+        <div class="col-12 d-flex align-items-center justify-content-between py-2">
+          <h2 class="h4">Transporte público</h2>
+          <p>
+            &Sigma; Gastos transporte público:
+            <strong>{{this.gasto?.sumatorio_gasto_transporte_publico?.toFixed(2)}} €</strong>
+          </p>
+        </div>
+        <div class="col-12">
+          <button (click)="this.nuevoTicketTransporte()" class="btn btn-outline-primary">Añadir ticket</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 p-2 table-responsive">
+          <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped table-hover">
+            <thead class="table-primary text-white">
+              <tr>
+                <th>Nº</th>
+                <th>Fecha</th>
+                <th>Importe</th>
+                <th>Trayecto</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let factura of this.gasto?.facturasTransporte;let i = index">
+                <!-- #region Datos -->
+                <td class="align-middle cursor-pointer" attr.aria-label="Ver factura #{{factura.id}}"
+                  (click)="mostrarFacturaTransporte(factura, this.modosEdicion.detalle)">
+                  {{i+1}}
+                </td>
+                <td class="align-middle cursor-pointer" attr.aria-label="Ver factura #{{factura.id}}"
+                  (click)="mostrarFacturaTransporte(factura, this.modosEdicion.detalle)">
+                  {{factura.fecha}}
+                </td>
+                <td class="align-middle cursor-pointer" attr.aria-label="Ver factura #{{factura.id}}"
+                  (click)="mostrarFacturaTransporte(factura, this.modosEdicion.detalle)">
+                  {{factura.importe}}
+                </td>
+                <td class="align-middle cursor-pointer" attr.aria-label="Ver factura #{{factura.id}}"
+                  (click)="mostrarFacturaTransporte(factura, this.modosEdicion.detalle)">
+                  {{factura.origen}} - {{factura.destino}}
+                </td>
+                <!-- #endregion -->
+                <!-- #region Acciones -->
+                <td class="text-center">
+                  <button class="btn btn-outline-warning px-2 py-1 mx-3"
+                    (click)="mostrarFacturaTransporte(factura, this.modosEdicion.editar)" placement="left"
+                    ngbTooltip="Editar factura" attr.aria-label="Editar factura #{{factura.id}}">
+                    <svg class="bi" width="16" height="16">
+                      <use xlink:href="#lapiz" />
+                    </svg>
+                  </button>
+                  <button class="btn btn-outline-danger px-2 py-1 mx-3" (click)="borrarFacturaTransporte(factura.id)"
+                    placement="left" ngbTooltip="Eliminar alumno" attr.aria-label="Eliminar factura #{{factura.id}}">
+                    <svg class="bi" width="16" height="16">
+                      <use xlink:href="#papelera" />
+                    </svg>
+                  </button>
+                </td>
+                <!-- #endregion -->
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Manutención -->
+    <section class="border border-primary rounded p-2" [hidden]="this.isVisible">
+      <div class="row">
+        <div class="col-12">
+          <button (click)="this.nuevoTicketManutencion()" class="btn btn-outline-primary">Añadir ticket</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 p-2 table-responsive">
+          <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped table-hover">
+            <thead class="table-primary text-white">
+              <tr>
+                <th>Nº</th>
+                <th>Fecha</th>
+                <th>Importe</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let factura of this.gasto?.facturasManutencion;let i = index">
+                <!-- #region Datos -->
+                <td class="align-middle cursor-pointer" attr.aria-label="Ver factura #{{factura.id}}"
+                  (click)="mostrarFacturaManutencion(factura,this.modosEdicion.detalle)">
+                  {{i+1}}
+                </td>
+                <td class="align-middle cursor-pointer" attr.aria-label="Ver factura #{{factura.id}}"
+                  (click)="mostrarFacturaManutencion(factura,this.modosEdicion.detalle)">
+                  {{factura.fecha}}
+                </td>
+                <td class="align-middle cursor-pointer" attr.aria-label="Ver factura #{{factura.id}}"
+                  (click)="mostrarFacturaManutencion(factura,this.modosEdicion.detalle)">
+                  {{factura.importe}}
+                </td>
+                <!-- #endregion -->
+                <!-- #region Acciones -->
+                <td class="text-center">
+                  <button class="btn btn-outline-warning px-2 py-1 mx-3"
+                    (click)="mostrarFacturaManutencion(factura,this.modosEdicion.editar)" placement="left"
+                    ngbTooltip="Editar factura" attr.aria-label="Editar factura #{{factura.id}}">
+                    <svg class="bi" width="16" height="16">
+                      <use xlink:href="#lapiz" />
+                    </svg>
+                  </button>
+                  <button class="btn btn-outline-danger px-2 py-1 mx-3" (click)="borrarFacturaManutencion(factura.id)"
+                    placement="left" ngbTooltip="Eliminar alumno" attr.aria-label="Eliminar factura #{{factura.id}}">
+                    <svg class="bi" width="16" height="16">
+                      <use xlink:href="#papelera" />
+                    </svg>
+                  </button>
+                </td>
+                <!-- #endregion -->
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div [hidden]="this.gasto?.tipo_desplazamiento != 'No aplica'">
+    <div class="row">
+      <div class="col-12">
+        <div class="d-flex align-items-end justify-content-between">
+          <button (click)="editarDatosAlumno()" aria-label="Editar datos del alumno" class="btn btn-outline-primary"
+            placement="right" ngbTooltip="Editar datos">
+            <svg width="16" height="16" class="bi">
+              <use xlink:href="#lapiz" />
+            </svg>
+          </button>
+
+          <p class="h5">Según la información aportada, no tiene derecho a solicitar compensación por gastos.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card p-3" [hidden]="this.gasto != undefined">
+  <h1 class="h5">Aún no tienes acceso a tu gestión de gastos. Pide a tu tutor que te añada en la sección "Gestión de
+    gastos" e inténtalo más tarde</h1>
+</div>

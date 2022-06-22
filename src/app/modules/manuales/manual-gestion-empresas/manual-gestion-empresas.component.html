@@ -1,0 +1,176 @@
+<div class="modal-header">
+  <h1 class="modal-title fs-2">Manual de gestión de empresas</h1>
+  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar" (click)="closeModal()"></button>
+</div>
+<div class="modal-body p-3">
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      <h2 class="fs-4 text-info">Vistazo general</h2>
+      <p>En la vista de gestión de empresas se muestran los datos de las empresas que tienen convenio con el centro de
+        estudios en el que está trabajando</p>
+      <p>En la siguiente imagen puede observar cada uno de los elementos importantes de la vista, numerados</p>
+      <img class="img-fluid" src="/assets/Manuales/gestion-empresas/screenshot_00.png"
+        alt="Captura de pantalla con la vista de gestión de empresas">
+    </li>
+    <li class="list-group-item">
+      <h2 class="fs-4 text-info">1. Registrar empresa</h2>
+      <div class="d-flex justify-content-between align-items-center">
+        <img src="/assets/Manuales/gestion-empresas/screenshot_01.png"
+          alt="Captura de pantalla con el botón para registrar una empresa" class="img-fluid me-3">
+        <div>
+          <p>Este botón, situado en la esquina superior derecha permite registrar una empresa en la aplicación,
+            generándose el convenio y el Anexo 0 o 0A correspondientes</p>
+          <p class="m-0">El funcionamiento del registro de la empresa se detalla en el manual correspondiente</p>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <h2 class="fs-4 text-info">2. Filtros según convenio</h2>
+      <p>Puede clickear en cualquiera de los tres botones de la esquina superior derecha para mostrar todas las
+        empresas, sólo las que tienen convenio con su centro o sólo las que no lo tienen</p>
+    </li>
+    <li class="list-group-item">
+      <h2 class="fs-4 text-info">3. Cantidad de registros a mostrar</h2>
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+          <p>Clickee sobre el desplegable para seleccionar cuántos registros quiere ver en cada página</p>
+          <p class="m-0">Mostrar más de 50 registros puede reducir el rendimiento de la aplicación</p>
+        </div>
+        <img src="/assets/Manuales/gestion-empresas/screenshot_02.png"
+          alt="Captura de pantalla del desplegable de mostrar registros" class="img-fluid ms-3 border border-dark">
+      </div>
+    </li>
+    <li class="list-group-item">
+      <h2 class="fs-4 text-info">4. Búsqueda por cualquier campo</h2>
+      <p>Busque empresas registradas usando la barra de búsquedas en la parte superior derecha de la tabla</p>
+      <img src="/assets/Manuales/gestion-empresas/busqueda.gif"
+        alt="GIF que ejemplifica la búsqueda en la tabla de gestión de empresas"
+        class="img-fluid me-3 border border-dark">
+      <p>Puede buscar una empresa por cualquiera de los campos de la tabla: CIF, nombre, e-mail de contacto o localidad
+      </p>
+    </li>
+    <li class="list-group-item">
+      <h2 class="fs-4 text-info">5. Ordenar según campo</h2>
+      <p>Puede ordenar las empresas en orden ascendente o descendente de cualquiera de los campos de la tabla clickeando
+        sobre el título de la columna</p>
+      <img src="/assets/Manuales/gestion-empresas/screenshot_03.png"
+        alt="Captura de pantalla que muestra las empresas ordenadas ascendentemente por nombre, con el cursor sobre el título 'Nombre' de la tabla"
+        class="img-fluid me-3 border border-dark">
+      <p class="mt-3">Si desea cambiar el orden, clickee de nuevo sobre el mismo título</p>
+      <img src="/assets/Manuales/gestion-empresas/screenshot_04.png"
+        alt="Captura de pantalla que muestra las empresas ordenadas descendentemente por nombre, con el cursor sobre el título 'Nombre' de la tabla"
+        class="img-fluid me-3 border border-dark">
+    </li>
+    <li class="list-group-item">
+      <h2 class="fs-4 text-info">6. Ver empresa en detalle</h2>
+      <p>Clickee sobre una fila de la tabla para ver los datos de la empresa correspondiente en detalle</p>
+      <img src="/assets/Manuales/gestion-empresas/screenshot_05.png"
+        alt="Captura de pantalla que muestra el cursor sobre una fila de la tabla"
+        class="img-fluid me-3 border border-dark">
+    </li>
+    <li class="list-group-item">
+      <h2 class="fs-4 text-info">7. Editar empresa</h2>
+      <div class="d-flex justify-content-between align-items-center">
+        <img src="/assets/Manuales/gestion-empresas/screenshot_06.png"
+          alt="Captura de pantalla con el botón para editar una empresa" class="img-fluid me-3">
+        <div>
+          <p>Clickee sobre el botón de editar (lapicero) para modificar los datos de una empresa o su representante
+            legal.</p>
+          <p class="m-0">Se abrirá una ventana modal que le permitirá cambiar todos los datos de la empresa, salvo el
+            DNI del representante legal.</p>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <h2 class="fs-4 text-info">8. Eliminar empresa</h2>
+      <div class="d-flex justify-content-between align-items-center">
+        <img src="/assets/Manuales/gestion-empresas/screenshot_07.png"
+          alt="Captura de pantalla con el botón para eliminar una empresa" class="img-fluid me-3">
+        <div>
+          <p>Clickee sobre el botón de eliminar (cubo de basura) para eliminar de la aplicación los datos de una empresa
+            y sus trabajadores</p>
+          <p class="m-0">Dado que es una acción definitiva, se pedirá una confirmación</p>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <h2 class="fs-4 text-info">9. Hacer convenio o acuerdo</h2>
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <img src="/assets/Manuales/gestion-empresas/screenshot_08.png"
+          alt="Captura de pantalla con el botón para hacer convenio o acuerdo" class="img-fluid me-3">
+        <div>
+          <p>Clickee sobre el botón de convenio (manos estrechándose) para establecer los términos del convenio entre su
+            centro de estudios y la empresa correspondiente</p>
+          <p class="m-0">Se abrirá una ventana modal que le permitirá introducir los datos del convenio y subir el Anexo
+            0 o 0A pertinente</p>
+        </div>
+      </div>
+      <p>En la parte superior del modal puede introducir el número de convenio (consúltelo con su centro) y la fecha de
+        inicio del mismo. El resto de campos se calcularán automáticamente.</p>
+      <img src="/assets/Manuales/gestion-empresas/convenio_01.png"
+        alt="Captura de pantalla: modal para hacer convenio con los datos desplegados"
+        class="img-fluid me-3 border border-dark mb-2">
+      <p>Si no dispone del Anexo 0 o 0A, deje la casilla "Dispongo del documento" desmarcada y rellene el formulario.
+        Las secciones del centro de estudios y de la empresa aparecerán rellenas con los datos del sistema, pero puede
+        editarlas en caso de que sea necesario.</p>
+      <img src="/assets/Manuales/gestion-empresas/convenio_02.png"
+        alt="Captura de pantalla: modal para hacer convenio en modo subir fichero"
+        class="img-fluid me-3 border border-dark mb-2">
+      <p>Si dispone del documento, marque la casilla "Dispongo del documento" y suba el archivo en formato PDF</p>
+      <p class="mt-1">Independientemente de la opción que elija, podrá guardar los cambios usando el botón en la parte
+        inferior del modal.</p>
+      <p class="mt-1">Si ha generado el documento, podrá descargarlo tras finalizar el proceso.</p>
+    </li>
+    <li class="list-group-item">
+      <h2 class="fs-4 text-info">10. Visualizar convenio o acuerdo</h2>
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <img src="/assets/Manuales/gestion-empresas/screenshot_09.png"
+          alt="Captura de pantalla con el botón para visualizar el convenio o acuerdo" class="img-fluid me-3">
+        <div>
+          <p>Clickee sobre el botón de visualización (ojo) para ver los términos del convenio entre su
+            centro de estudios y la empresa correspondiente y poder descargar el anexo.</p>
+          <p class="m-0">Si el documento no se descarga, vuelva a generarlo (ver editar convenio o acuerdo)</p>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <h2 class="fs-4 text-info">11. Editar convenio o acuerdo</h2>
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <img src="/assets/Manuales/gestion-empresas/screenshot_10.png"
+          alt="Captura de pantalla con el botón para editar el convenio o acuerdo" class="img-fluid me-3">
+        <div>
+          <p>Clickee sobre el botón de edición de documento (folio con lápiz) para editar el convenio entre su
+            centro de estudios y la empresa correspondiente, con opción de re-subir el documento.</p>
+          <p class="m-0">La ventana modal tiene el mismo funcionamiento que la de hacer convenio.</p>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <h2 class="fs-4 text-info">12. Anular convenio o acuerdo</h2>
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <img src="/assets/Manuales/gestion-empresas/screenshot_11.png"
+          alt="Captura de pantalla con el botón para anular el convenio o acuerdo" class="img-fluid me-3">
+        <div>
+          <p>Clickee sobre el botón con un aspa para anular el convenio entre su
+            centro de estudios y la empresa correspondiente, previa confirmación.</p>
+          <p class="m-0">Esto eliminará el convenio del sistema y deshabilitará el anexo correspondiente.</p>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <h2 class="fs-4 text-info">13. Renovar convenio o acuerdo</h2>
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <img src="/assets/Manuales/gestion-empresas/screenshot_12.png"
+          alt="Captura de pantalla con el botón para renovar el convenio o acuerdo" class="img-fluid me-3">
+        <div>
+          <p>Clickee sobre el botón de renovación para renovar el convenio entre su
+            centro de estudios y la empresa correspondiente.</p>
+          <p class="m-0">La ventana modal tiene un funcionamiento muy similar a la de hacer o editar convenio.</p>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-outline-primary" (click)="closeModal()">Volver</button>
+</div>

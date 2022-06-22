@@ -1,0 +1,76 @@
+<div class="modal-header">
+    <h1 class="modal-title fs-2">Manual del Historial de Anexos </h1>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="CloseModal()"></button>
+</div>
+<div class="modal-body">
+    <p class="text-info"><b>Esto es una ayuda para poder manejar el historial de Anexos</b></p>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+            <h2 class="fs-4 text-info">Vistazo general</h2>
+            <p>Esta vista muestra una lista de anexos deshabilitados asociados a un tutor
+            </p>
+        </li>
+    </ul>
+
+    <h2 class="fs-4 text-info">1.Si eres Tutor, Jefe de estudios o Director:</h2>
+    <ul class="list-group list-group-flush">
+        <p class="text-info pt-3 fw-underline"><b>Explicación de los campos:</b></p>
+        <li class="pt-3 list-group-item">
+            <p>Este campo nos muestra el tipo de Anexo</p>
+            <img class="pb-3 img-fluid me-3" src="../../../../assets/Manuales/crud-anexos/anexo.png" alt="Esto nos muestra el tipo de Anexo">
+        </li>
+        <li class="pt-3 list-group-item">
+            <p>Este campo nos muestra la empresa asociada a ese Anexo</p>
+            <img class="pb-3 img-fluid me-3" src="../../../../assets/Manuales/crud-anexos/empresa.png" alt="Esto nos muestra la empresa asociada a ese Anexo">
+        </li>
+        <li class="pt-3 list-group-item">
+            <p>Este campo nos muestra el alumno asociado a ese Anexo</p>
+            <img class="pb-3 img-fluid me-3" src="../../../../assets/Manuales/crud-anexos/alumno.png" alt="Esto nos muestra el alumno a ese Anexo">
+        </li>
+        <li class="pt-3 list-group-item">
+            <p>Este campo nos muestra si la empresa ha firmado ese anexo, una linea es No, un check es Si</p>
+            <img class="pb-3 img-fluid me-3" src="../../../../assets/Manuales/crud-anexos/firmaEmpresa.png" alt="Esto nos muestra si la empresa ha firmado ese anexo, una linea es No, un check es Si">
+        </li>
+        <li class="pt-3 list-group-item">
+            <p>Este campo nos muestra si el centro de estudios ha firmado ese anexo, una linea es No, un check es si</p>
+            <img class="pb-3 img-fluid me-3" src="../../../../assets/Manuales/crud-anexos/firmaCentro.png" alt="Esto nos muestra si el centro de estudios ha firmado ese anexo, una linea es No, un check es si">
+        </li>
+        <li class="pt-3 list-group-item">
+            <p>Este campo nos muestra si el alumno ha firmado ese anexo, una linea es No, un check es si</p>
+            <img class="pb-3 img-fluid me-3" src="../../../../assets/Manuales/crud-anexos/firmaAlumno.png" alt="Esto nos muestra si el alumno ha firmado ese anexo, una linea es No, un check es si">
+        </li>
+        <li class="pt-3 list-group-item">
+            <p>Este campo nos muestra la fecha de generación del Anexo</p>
+            <img class="pb-3 img-fluid me-3" src="../../../../assets/Manuales/historial-anexos/fecha.png" alt="Esto nos muestra la fecha de creación de este anexo">
+        </li>
+        <p class="text-info pt-3"><b>Explicación de los botones:</b></p>
+        <li class=" pt-3 list-group-item">
+            <p>Con este botón podras descargar todos los anexos que estan activos en la tabla</p>
+            <img class="pb-3 img-fluid me-3" src="../../../../assets/Manuales/crud-anexos/descargarTodo.png" alt="Este botón podras descargar todos los anexos">
+        </li>
+        <li class=" pt-3 list-group-item">
+            <p>Con este botón podras descargar un anexo en concreto, el que se muestra en la linea de la tabla donde se encuentre el botón</p>
+            <img class="pb-3 img-fluid me-3" src="../../../../assets/Manuales/historial-anexos/descarga.png" alt="Este botón podras descargar un anexo en concreto">
+        </li>
+        <li class="pt-3 list-group-item">
+            <p>Con este botón podras habilitar un anexo en concreto, el que se muestra en la linea de la tabla donde se encuentre el botón</p>
+            <img class="pb-3 img-fluid me-3" src="../../../../assets/Manuales/historial-anexos/habilitar.png" alt="Este botón podras habilitar un anexo en concreto">
+        </li>
+        <li class="pt-3 list-group-item">
+            <p>Con este botón podras eliminar un anexo en concreto, el que se muestra en la linea de la tabla donde se encuentre el botón</p>
+            <img class="pb-3 img-fluid me-3" src="../../../../assets/Manuales/historial-anexos/eliminar.png" alt="Este botón podras eliminar un anexo en concreto">
+        </li>
+    </ul>
+
+
+    <h2 class="fs-4 text-info">2.Solo si eres Director o Jefe de estudios:</h2>
+    <ul class="list-group list-group-flush">
+        <li class="pt-3 list-group-item">
+            <p>Esto sería una lista con los grupos vigentes en tu centro</p>
+            <img class="pb-3 img-fluid" src="../../../../assets/Manuales/crud-anexos/grupo.png" alt="Este campo muestra una lista con los grupos vigentes en tu centro">
+        </li>
+    </ul>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-outline-primary" (click)="CloseModal()">Volver</button>
+</div>

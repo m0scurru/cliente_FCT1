@@ -1,0 +1,121 @@
+<div class="row">
+  <div class="page-header d-flex justify-content-between pb-3">
+    <h1 class="h2">Carga de datos</h1>
+    <button type="button" class="btn btn-outline-default mr-2" placement="left"
+      ngbTooltip="Haga clic para acceder a la ayuda de esta sección" (click)="abrirAyuda()">?</button>
+  </div>
+</div>
+
+<div class="card p-3">
+  <div class="row g-4">
+    <div class="col-lg-6 col-sm-12">
+      <ngx-dropzone [multiple]="false" (change)="onSelectAlumnos($event)">
+        <ngx-dropzone-label>
+          <div class="content pt-2 pb-0">
+            <div class="inputfile"></div>
+            <label for="">
+              <figure>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-upload"
+                  viewBox="0 0 16 16">
+                  <path
+                    d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
+                  <path
+                    d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z" />
+                </svg>
+              </figure>
+              <span>Alumnos</span>
+            </label>
+          </div>
+        </ngx-dropzone-label>
+        <ngx-dropzone-preview *ngFor="let f of filesAlumnos" [removable]="true" (removed)="onRemoveAlumnos(f)">
+          <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+        </ngx-dropzone-preview>
+      </ngx-dropzone>
+    </div>
+
+    <div class="col-lg-6 col-sm-12">
+      <ngx-dropzone [multiple]="false" (change)="onSelectProfesores($event)">
+        <ngx-dropzone-label>
+          <div class="content pt-2 pb-0">
+            <div class="inputfile"></div>
+            <label for="">
+              <figure>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-upload"
+                  viewBox="0 0 16 16">
+                  <path
+                    d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
+                  <path
+                    d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z" />
+                </svg>
+              </figure>
+              <span>Profesores</span>
+            </label>
+          </div>
+        </ngx-dropzone-label>
+        <ngx-dropzone-preview *ngFor="let f of filesProfesores" [removable]="true" (removed)="onRemoveProfesores(f)">
+          <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+        </ngx-dropzone-preview>
+      </ngx-dropzone>
+    </div>
+
+    <div class="col-lg-6 col-sm-12">
+      <ngx-dropzone [multiple]="false" (change)="onSelectMatriculas($event)">
+        <ngx-dropzone-label>
+          <div class="content pt-2 pb-0">
+            <div class="inputfile"></div>
+            <label for="">
+              <figure>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-upload"
+                  viewBox="0 0 16 16">
+                  <path
+                    d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
+                  <path
+                    d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z" />
+                </svg>
+              </figure>
+              <span>Matriculas</span>
+            </label>
+          </div>
+        </ngx-dropzone-label>
+        <ngx-dropzone-preview *ngFor="let f of filesMatriculas" [removable]="true" (removed)="onRemoveMatriculas(f)">
+          <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+        </ngx-dropzone-preview>
+      </ngx-dropzone>
+    </div>
+
+    <div class="col-lg-6 col-sm-12">
+      <ngx-dropzone [multiple]="false" (change)="onSelectUnidades($event)">
+        <ngx-dropzone-label>
+          <div class="content pt-2 pb-0">
+            <div class="inputfile"></div>
+            <label for="">
+              <figure>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-upload"
+                  viewBox="0 0 16 16">
+                  <path
+                    d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
+                  <path
+                    d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z" />
+                </svg>
+              </figure>
+              <span>Unidades</span>
+            </label>
+          </div>
+        </ngx-dropzone-label>
+        <ngx-dropzone-preview *ngFor="let f of filesUnidades" [removable]="true" (removed)="onRemoveUnidades(f)">
+          <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+        </ngx-dropzone-preview>
+      </ngx-dropzone>
+    </div>
+
+  </div>
+
+
+  <ng-template #content let-modal></ng-template>
+
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-outline-primary btnData mt-4" (click)="subirFicheros()">Guardar datos</button>
+    </div>
+  </div>
+</div>

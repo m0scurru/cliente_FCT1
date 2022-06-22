@@ -1,0 +1,548 @@
+<!-- Título de la sección -->
+<div class="row">
+  <div class="page-header d-flex justify-content-between pb-3">
+    <h1 class="h2">Registro de empresas</h1>
+    <button type="button" class="btn btn-outline-default mr-2" placement="left"
+      ngbTooltip="Haga clic para acceder a la ayuda de esta sección" (click)="abrirAyuda()">?</button>
+  </div>
+  <!-- Breadcrumb -->
+  <div class="col-12 py-2 px-3">
+    <div class="breadcrumb">
+      <ng-container *ngFor="let fase of fases; let i = index">
+        <a class="{{ fase.getClass(faseActual) }}" (click)="cambiarFase(fase.index)">
+          <span class="arrow"></span>
+          <span class="hide-mobile">{{ fase.nombre }}</span>
+          <span class="show-mobile">{{ fase.abreviatura }}</span>
+        </a>
+      </ng-container>
+    </div>
+  </div>
+</div>
+
+<!-- #region Formularios de registro -->
+<!-- Formulario de datos de la empresa -->
+<form [formGroup]="empresa" (ngSubmit)="onSubmitEmpresa()" class="row px-4 py-4 d-flex justify-content-center"
+  *ngIf="faseActual === 1">
+  <div class="col-12 col-lg-8 card p-3">
+    <div class="mb-3">
+      <div class="row d-flex align-items-center">
+        <div class="col-12 col-lg-4 d-lg-flex justify-content-end">
+          <label for="cif" class="form-label fw-bold m-0">CIF</label>
+        </div>
+        <div class="col-12 col-lg-8">
+          <input type="text" class="form-control" id="cif" formControlName="cif" placeholder="00000000X"
+            (blur)="checkDato('empresa', 'cif', $event)">
+          <ng-container *ngIf="submitted && formEmpresa['cif'].errors">
+            <div class="text-danger bg-white rounded border border-2 border-danger p-2"
+              *ngIf="formEmpresa['cif'].errors['required']">No puede estar vacío.</div>
+            <div class="text-danger bg-white rounded border border-2 border-danger p-2"
+              *ngIf="formEmpresa['cif'].errors['minlength']">Debe tener 8 números y 1 letra en
+              mayúscula.</div>
+            <div class="text-danger bg-white rounded border border-2 border-danger p-2"
+              *ngIf="formEmpresa['cif'].errors['duplicate']">Este CIF ya está registrado en la aplicación
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <div class="row d-flex align-items-center">
+        <div class="col-12 col-lg-4 d-lg-flex justify-content-end">
+          <label for="nombre" class="form-label fw-bold m-0">Nombre</label>
+        </div>
+        <div class="col-12 col-lg-8">
+          <input type="text" class="form-control" id="nombre" formControlName="nombre"
+            placeholder="Nombre de la empresa">
+          <ng-container *ngIf="submitted && formEmpresa['nombre'].errors">
+            <div class="text-danger bg-white rounded border border-2 border-danger p-2"
+              *ngIf="formEmpresa['nombre'].errors['required']">No puede estar vacío.</div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <div class="row d-flex align-items-center">
+        <div class="col-12 col-lg-4 d-lg-flex justify-content-end">
+          <label for="email" class="form-label fw-bold m-0">Correo electrónico</label>
+        </div>
+        <div class="col-12 col-lg-8">
+          <input type="email" id="email" class="form-control" placeholder="empresa@empresa.com" formControlName="email"
+            (blur)="checkDato('empresa', 'email', $event)">
+          <ng-container *ngIf="submitted && formEmpresa['email'].errors">
+            <div class="text-danger bg-white rounded border border-2 border-danger p-2"
+              *ngIf="formEmpresa['email'].errors['required']">No puede estar vacío</div>
+            <div class="text-danger bg-white rounded border border-2 border-danger p-2"
+              *ngIf="formEmpresa['email'].errors['email']">Debe tener formato de correo electrónico
+            </div>
+            <div class="text-danger bg-white rounded border border-2 border-danger p-2"
+              *ngIf="formEmpresa['email'].errors['duplicate']">Este e-mail ya está registrado en la aplicación
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    <div class="mb-3">
+      <div class="row d-flex align-items-center">
+        <div class="col-12 col-lg-4 d-lg-flex justify-content-end">
+          <label for="telefono" class="form-label fw-bold m-0">Teléfono</label>
+        </div>
+        <div class="col-12 col-lg-8">
+          <input type="text" class="form-control" id="telefono" formControlName="telefono" placeholder="000 00 00 00">
+          <ng-container *ngIf="submitted && formEmpresa['telefono'].errors">
+            <div class="text-danger bg-white rounded border border-2 border-danger p-2"
+              *ngIf="formEmpresa['telefono'].errors['required']">No puede estar vacío.</div>
+            <div class="text-danger bg-white rounded border border-2 border-danger p-2"
+              *ngIf="formEmpresa['telefono'].errors['minlength']">Debe tener 9 números.</div>
+            <div class="text-danger bg-white rounded border border-2 border-danger p-2"
+              *ngIf="formEmpresa['telefono'].errors['maxlength']">Debe tener 9 números.</div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <fieldset class="row d-flex align-items-center">
+        <div class="col-12 col-lg-4 d-lg-flex justify-content-end">
+          <label class="form-label fw-bold m-0" id="tipo-empresa-label">Tipo de empresa</label>
+        </div>
+        <div class="col-12 col-lg-4">
+          <div class="form-check">
+            <input class="form-check-input" formControlName="tipoEmpresa" type="radio" value="1" name="tipoEmpresa"
+              id="privada" aria-describedby="tipo-empresa-label">
+            <label class="form-check-label" for="privada">
+              Privada
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" formControlName="tipoEmpresa" type="radio" name="tipoEmpresa" value="0"
+              id="publica" ng-checked="true" aria-describedby="tipo-empresa-label">
+            <label class="form-check-label" for="publica">
+              Pública
+            </label>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+    <!-- Botones -->
+    <div class="row py-2 d-flex justify-content-center">
+      <div class="col-6 d-flex justify-content-center">
+        <input type="submit" value="Aceptar y continuar" class="btn btn-outline-primary">
+      </div>
+    </div>
+  </div>
+</form>
+
+<!-- Formulario de ubicación del centro de trabajo -->
+<form [formGroup]="ubicacion" (ngSubmit)="onSubmitUbicacion()" class="row px-4 py-4 d-flex justify-content-center"
+  *ngIf="faseActual === 2">
+  <div class="col-12 col-lg-8 card p-3">
+    <div class="mb-3">
+      <div class="row d-flex align-items-center">
+        <div class="col-12 col-lg-4 d-lg-flex justify-content-end">
+          <label for="provincia" class="form-label fw-bold m-0">Provincia</label>
+        </div>
+        <div class="col-12 col-lg-8">
+          <select class="form-select" formControlName="provincia" id="provincia" (change)="cambiarProvincia($event)">
+            <option *ngFor="let provincia of this.provincias" [value]="provincia">
+              {{ provincia }}
+            </option>
+          </select>
+          <ng-container *ngIf="submitted && formUbicacion['provincia'].errors">
+            <div class="text-danger bg-white rounded border border-2 border-danger p-2"
+              *ngIf="formUbicacion['provincia'].errors['required']">No puede estar vacía</div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    <div class="mb-3">
+      <div class="row d-flex align-items-center">
+        <div class="col-12 col-lg-4 d-lg-flex justify-content-end">
+          <label for="localidad" class="form-label fw-bold m-0">Localidad</label>
+        </div>
+        <div class="col-12 col-lg-8">
+          <select class="form-select" formControlName="localidad" id="localidad" (change)="cambiarCiudad($event)">
+            <option *ngFor="let localidad of this.localidades" [value]="localidad">
+              {{ localidad }}
+            </option>
+          </select>
+          <ng-container *ngIf="submitted && formUbicacion['localidad'].errors">
+            <div class="text-danger bg-white rounded border border-2 border-danger p-2"
+              *ngIf="formUbicacion['localidad'].errors['required']">No puede estar vacía</div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    <div class="mb-3">
+      <div class="row d-flex align-items-center">
+        <div class="col-12 col-lg-4 d-lg-flex justify-content-end">
+          <label for="direccion" class="form-label fw-bold m-0">Dirección</label>
+        </div>
+        <div class="col-12 col-lg-8">
+          <input type="text" id="direccion" class="form-control" id="direccion" formControlName="direccion"
+            placeholder="Av/ Avenida, 123">
+          <ng-container *ngIf="submitted && formUbicacion['direccion'].errors">
+            <div class="text-danger bg-white rounded border border-2 border-danger p-2"
+              *ngIf="formUbicacion['direccion'].errors['required']">No puede estar vacía</div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    <div class="mb-3">
+      <div class="row d-flex align-items-center">
+        <div class="col-12 col-lg-4 d-lg-flex justify-content-end">
+          <label for="cp" class="form-label fw-bold m-0">Código Postal</label>
+        </div>
+        <div class="col-12 col-lg-8">
+          <input type="text" class="form-control" id="cp" formControlName="cp" placeholder="00000">
+          <ng-container *ngIf="submitted && formUbicacion['cp'].errors">
+            <div class="text-danger bg-white rounded border border-2 border-danger p-2"
+              *ngIf="formUbicacion['cp'].errors['required']">No puede estar vacío</div>
+            <div class="text-danger bg-white rounded border border-2 border-danger p-2"
+              *ngIf="formUbicacion['cp'].errors['minlength']">Debe tener 5 dígitos</div>
+            <div class="text-danger bg-white rounded border border-2 border-danger p-2"
+              *ngIf="formUbicacion['cp'].errors['maxlength']">Debe tener 5 dígitos</div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    <!-- Botones -->
+    <div class="row py-2 d-flex justify-content-center">
+      <div class="col-6 d-flex justify-content-center">
+        <input type="submit" value="Aceptar y continuar" class="btn btn-outline-primary">
+      </div>
+    </div>
+  </div>
+</form>
+
+<!-- Formulario de datos del representante legal -->
+<form [formGroup]="representante" (ngSubmit)="onSubmitRepresentante()"
+  class="row px-4 py-4 d-flex justify-content-center" *ngIf="faseActual === 3">
+  <div class="col-12 col-lg-8 card p-3">
+    <div class="mb-3">
+      <div class="row d-flex align-items-center">
+        <div class="col-12 col-lg-4 d-lg-flex justify-content-end">
+          <label for="dni" class="form-label fw-bold m-0">DNI</label>
+        </div>
+        <div class="col-12 col-lg-8">
+          <input type="text" class="form-control" id="dni" placeholder="00000000X" formControlName="dni"
+            (blur)="checkDato('trabajador', 'dni', $event)">
+          <ng-container *ngIf="submitted && formRepresentante['dni'].errors">
+            <div *ngIf="formRepresentante['dni'].errors['required']"
+              class="text-danger bg-white rounded border border-2 border-danger p-2">No puede estar vacío</div>
+            <div *ngIf="formRepresentante['dni'].errors['minlength']"
+              class="text-danger bg-white rounded border border-2 border-danger p-2">Debe tener 8 números y 1 letra en
+              mayúscula</div>
+            <div *ngIf="formRepresentante['dni'].errors['maxlength']"
+              class="text-danger bg-white rounded border border-2 border-danger p-2">Debe tener 9 caracteres</div>
+            <div class="text-danger bg-white rounded border border-2 border-danger p-2"
+              *ngIf="formRepresentante['dni'].errors['duplicate']">Este DNI ya está registrado en la aplicación
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    <div class="mb-3">
+      <div class="row d-flex align-items-center">
+        <div class="col-12 col-lg-4 d-lg-flex justify-content-end">
+          <label for="nombre" class="form-label fw-bold m-0">Nombre</label>
+        </div>
+        <div class="col-12 col-lg-8">
+          <input type="text" class="form-control" id="nombre" formControlName="nombre"
+            placeholder="Nombre del representante...">
+          <ng-container *ngIf="submitted && formRepresentante['nombre'].errors">
+            <div class="text-danger bg-white rounded border border-2 border-danger p-2"
+              *ngIf="formRepresentante['nombre'].errors['required']">No puede estar vacío</div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    <div class="mb-3">
+      <div class="row d-flex align-items-center">
+        <div class="col-12 col-lg-4 d-lg-flex justify-content-end">
+          <label for="apellidos" class="form-label fw-bold m-0">Apellidos</label>
+        </div>
+        <div class="col-12 col-lg-8">
+          <input type="text" class="form-control" id="apellidos" formControlName="apellidos"
+            placeholder="Apellidos del representante...">
+          <ng-container *ngIf="submitted && formRepresentante['apellidos'].errors">
+            <div class="text-danger bg-white rounded border border-2 border-danger p-2"
+              *ngIf="formRepresentante['apellidos'].errors['required']">No puede estar vacío.</div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    <div class="mb-3">
+      <div class="row d-flex align-items-center">
+        <div class="col-12 col-lg-4 d-lg-flex justify-content-end">
+          <label for="email" class="form-label fw-bold m-0">Correo electrónico</label>
+        </div>
+        <div class="col-12 col-lg-8">
+          <input type="email" id="email" class="form-control" placeholder="representante@empresa.com"
+            formControlName="email" (blur)="checkDato('trabajador', 'email', $event)">
+          <ng-container *ngIf="submitted && formRepresentante['email'].errors">
+            <div class="text-danger bg-white rounded border border-2 border-danger p-2"
+              *ngIf="formRepresentante['email'].errors['required']">No puede estar vacío</div>
+            <div class="text-danger bg-white rounded border border-2 border-danger p-2"
+              *ngIf="formRepresentante['email'].errors['email']">Debe tener formato de correo electrónico
+            </div>
+            <div class="text-danger bg-white rounded border border-2 border-danger p-2"
+              *ngIf="formRepresentante['email'].errors['duplicate']">Este e-mail ya está registrado en la aplicación
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    <!-- Botones -->
+    <div class="row py-2 d-flex justify-content-center">
+      <div class="col-6 col-xl-6 d-flex justify-content-center">
+        <input type="submit" value="Aceptar y continuar" class="btn btn-outline-primary">
+      </div>
+    </div>
+  </div>
+</form>
+
+<!-- Ciclos formativos en los que la empresa está interesada -->
+<form [formGroup]="ciclos" (ngSubmit)="onSubmitCiclos()" *ngIf="faseActual === 4"
+  class="row px-4 py-4 d-flex justify-content-center">
+  <h2 class="h4">Seleccione los ciclos de interés para la empresa</h2>
+  <div class="col-12 card p-3">
+    <div class="d-flex align-items-center justify-content-between">
+      <select class="form-select w-50" id="familia" (change)="cambiarFamilia($event)">
+        <option *ngFor="let familia of this.familias" [value]="familia.id"
+          class="{{ familia.id === 0 ? 'fw-bold' : '' }}">
+          {{ familia.descripcion }}
+        </option>
+      </select>
+      <input type="submit" value="Aceptar y continuar" class="btn btn-outline-primary">
+    </div>
+  </div>
+  <div class="col-12 p-3 card">
+    <div class="row align-items-start justify-content-start border-bottom border-3">
+      <span class="fs-6" *ngIf="formCiclos['cod_ciclos_selected'].errors?.['required']">
+        No ha seleccionado ningún ciclo
+      </span>
+      <div class="d-flex justify-content-between mb-3" *ngIf="!formCiclos['cod_ciclos_selected'].errors?.['required']">
+        <span class="fs-6">
+          Ciclos seleccionados:
+        </span>
+        <button class="btn btn-outline-danger float-end ciclos" (click)="construirFormCiclos()">Limpiar
+          selección</button>
+      </div>
+      <div class="d-inline-block pb-3">
+        <div class="pe-2 pb-2 d-inline-block" *ngFor="let codGrupo of ciclos.value.cod_ciclos_selected">
+          <input type="checkbox" class="btn-check" id="{{codGrupo}}_aux" autocomplete="off" [value]="codGrupo"
+            (change)="onCheckboxChange($event)" [checked]="isChecked(codGrupo)">
+          <label class="btn btn-outline-success ciclos" for="{{codGrupo}}_aux">{{codGrupo}}</label>
+        </div>
+      </div>
+    </div>
+    <div class="row d-flex align-items-center">
+      <div class="col-4 col-lg-2 p-3" *ngFor="let grupo of filtrarGrupos(familiaSelected!)">
+        <input type="checkbox" class="btn-check" id="{{grupo.cod}}" autocomplete="off" [value]="grupo.cod"
+          (change)="onCheckboxChange($event)" [checked]="isChecked(grupo.cod)">
+        <label class="btn btn-outline-success w-100" for="{{grupo.cod}}" placement="top"
+          ngbTooltip="{{grupo.nombre_ciclo}}">{{grupo.cod}}</label>
+      </div>
+    </div>
+  </div>
+</form>
+
+<!-- Resumen del registro -->
+<div class="row px-4 py-4 d-flex justify-content-center" *ngIf="faseActual === 5">
+  <div class="col-12 border border-black p-3 card">
+    <div class="row">
+      <!-- Datos de la empresa -->
+      <div class="col-xl-4 col-12 px-4">
+        <div class="row">
+          <h2 class="col-12 text-center h3">Empresa</h2>
+        </div>
+
+        <div class="row border border-dark border-1 rounded p-2 d-flex align-items-center">
+          <div class="col-12 mb-3">
+            <div class="row d-flex align-items-center">
+              <div class="col-12 col-lg-4 d-lg-flex justify-content-end">
+                <label for="cifEmp" class="form-label fw-bold m-0">CIF:</label>
+              </div>
+              <div class="col-12 col-lg-8">
+                <span> {{ empresa.value.cif }} </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 mb-3">
+            <div class="row d-flex align-items-center">
+              <div class="col-12 col-lg-4 d-lg-flex justify-content-end">
+                <label for="nombreEmp" class="form-label fw-bold m-0">Nombre:</label>
+              </div>
+              <div class="col-12 col-lg-8">
+                <span> {{ empresa.value.nombre }} </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 mb-3">
+            <div class="row d-flex align-items-center">
+              <div class="col-12 col-lg-4 d-lg-flex justify-content-end">
+                <label for="correoEmp" class="form-label fw-bold m-0">Email:</label>
+              </div>
+              <div class="col-12 col-lg-8">
+                <span> {{ empresa.value.email }} </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 mb-3">
+            <div class="row d-flex align-items-center">
+              <div class="col-12 col-lg-4 d-lg-flex justify-content-end">
+                <label for="telefonoEmp" class="form-label fw-bold m-0">Teléfono:</label>
+              </div>
+              <div class="col-12 col-lg-8">
+                <span> {{ empresa.value.telefono }} </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 mb-3">
+            <div class="row d-flex align-items-center">
+              <div class="col-12 col-lg-4 d-lg-flex justify-content-end">
+                <label for="tipoEmpresa" class="form-label fw-bold m-0">Tipo:</label>
+              </div>
+              <div class="col-12 col-lg-8">
+                <span> {{ empresa.value.tipoEmpresa === 0 ? 'Pública' : 'Privada' }} </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Datos del domicilio del centro de trabajo -->
+      <div class="col-xl-4 col-12 px-4">
+        <div class="row">
+          <h2 class="col-12 text-center h3">Ubicación</h2>
+        </div>
+
+        <div class="row border border-dark border-1 rounded p-2 d-flex align-items-center">
+          <div class="col-12 mb-3">
+            <div class="row d-flex align-items-center">
+              <div class="col-12 col-lg-4 d-lg-flex justify-content-end">
+                <label for="localidad" class="form-label fw-bold m-0">Localidad:</label>
+              </div>
+              <div class="col-12 col-lg-8">
+                <span> {{ ubicacion.value.localidad }} </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 mb-3">
+            <div class="row d-flex align-items-center">
+              <div class="col-12 col-lg-4 d-lg-flex justify-content-end">
+                <label for="provincia" class="form-label fw-bold m-0">Provincia:</label>
+              </div>
+              <div class="col-12 col-lg-8">
+                <span> {{ ubicacion.value.provincia }} </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 mb-3">
+            <div class="row d-flex align-items-center">
+              <div class="col-12 col-lg-4 d-lg-flex justify-content-end">
+                <label for="direccion" class="form-label fw-bold m-0">Dirección:</label>
+              </div>
+              <div class="col-12 col-lg-8">
+                <span> {{ ubicacion.value.direccion }} </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 mb-3">
+            <div class="row d-flex align-items-center">
+              <div class="col-12 col-lg-4 d-lg-flex justify-content-end">
+                <label for="cp" class="form-label fw-bold m-0">CP:</label>
+              </div>
+              <div class="col-12 col-lg-8">
+                <span> {{ ubicacion.value.cp }} </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Datos del representante legal -->
+      <div class="col-xl-4 col-12 px-4">
+        <div class="row">
+          <h2 class="col-12 h3 text-center">Representante</h2>
+        </div>
+
+        <div class="row border border-dark border-1 rounded p-2 d-flex align-items-center">
+          <div class="col-12 mb-3">
+            <div class="row d-flex align-items-center">
+              <div class="col-12 col-lg-4 d-lg-flex justify-content-end">
+                <label for="dniRep" class="form-label fw-bold m-0">DNI:</label>
+              </div>
+              <div class="col-12 col-lg-8">
+                <span> {{ representante.value.dni }} </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 mb-3">
+            <div class="row d-flex align-items-center">
+              <div class="col-12 col-lg-4 d-lg-flex justify-content-end">
+                <label for="nombreRep" class="form-label fw-bold m-0">Nombre:</label>
+              </div>
+              <div class="col-12 col-lg-8">
+                <span> {{ representante.value.nombre }} </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 mb-3">
+            <div class="row d-flex align-items-center">
+              <div class="col-12 col-lg-4 d-lg-flex justify-content-end">
+                <label for="apellidosRep" class="form-label fw-bold m-0">Apellidos:</label>
+              </div>
+              <div class="col-12 col-lg-8">
+                <span> {{ representante.value.apellidos }} </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 mb-3">
+            <div class="row d-flex align-items-center">
+              <div class="col-12 col-lg-4 d-lg-flex justify-content-end">
+                <label for="correoRep" class="form-label fw-bold m-0">E-mail:</label>
+              </div>
+              <div class="col-12 col-lg-8">
+                <span> {{ representante.value.email }} </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Datos de los ciclos seleccionados -->
+      <div class="col-12 px-4">
+        <div class="row">
+          <h2 class="col-12 h3 text-center">Ciclos seleccionados</h2>
+        </div>
+        <div class="row border border-dark border-1 rounded p-2 d-flex align-items-center">
+          <div class="d-inline-block col-12">
+            <div class="pe-2 py-2 d-inline-block" *ngFor="let codGrupo of ciclos.value.cod_ciclos_selected">
+              <span class="btn btn-dark" ngbTooltip="{{getGrupo(codGrupo)?.nombre_ciclo}}"
+                placement="top">{{codGrupo}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Botones -->
+    <div class="row py-2 d-flex align-items-center">
+      <div class="col-12 d-flex justify-content-center">
+        <button class="btn btn-outline-primary" (click)="finalizarRegistro()">Finalizar registro</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,8 @@
+<h1 class="h5"> {{data.title}} </h1>
+<div>
+  <p> {{data.message}} </p>
+  <div class="d-flex justify-content-end">
+    <button class="btn btn-outline-primary px-4" (click)="close(true)">Sí</button>
+    <button class="btn btn-outline-default px-4 ms-2" (click)="close(false)">No</button>
+  </div>
+</div>

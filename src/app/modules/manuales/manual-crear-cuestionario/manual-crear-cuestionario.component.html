@@ -1,0 +1,45 @@
+<div class="modal-header">
+  <h1 class="modal-title fs-2">Manual de creación de cuestionarios</h1>
+  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar" (click)="closeModal()"></button>
+</div>
+<div class="modal-body p-3">
+  <ul class="list-group list-group-flush">
+
+    <li class="list-group-item">
+      <h2 class="fs-4 text-info">Vistazo general</h2>
+      <p>
+        Lo primero que encontramos es un campo de texto en el que debemos de indicar el nombre con el que se guardará nuestro cuestionario,
+        seguido del destinatario al que irá dirigido.
+      </p>
+      <p>Por último encontramos 2 botones, el primero de ellos "añadir pregunta" añadirá una pregunta de la cual tendrá que indicarse su tipo,
+         rango o texto, dependiendo del tipo de respuesta que se espere y seguidamente la pregunta en cuestión.</p>
+      <img class="img-fluid" src="/assets/Manuales/crear-cuestionario/crearCuestionarioManual_01.png"
+        alt="Captura de pantalla con la vista del formulario de creación de cuestionario.">
+    </li>
+
+    <li class="list-group-item">
+      <h2 class="fs-4 text-info">Borrado y guardado</h2>
+      <p>
+        Tras añadir una pregunta tenemos la opción de borrarla clicando sobre el botón "Borrar".
+      </p>
+      <p>
+        Para finalizar, podemos almacenar en la base de datos nuestro cuestionario para utilizarlo con posterioridad.
+        Ten en cuenta que estas preguntas serán visibles por los alumnos o los tutores de las empresas una vez habilitados los mismos.
+        No obstante, pueden revisarse con posterioridad y realizarse cambios sobre los cuestionarios y sus preguntas.
+      </p>
+      <img class="img-fluid" src="/assets/Manuales/crear-cuestionario/crearCuestionarioManual_02.png"
+        alt="Captura de pantalla con la vista del formulario de creación de cuestionario.">
+    </li>
+
+
+    <li class="list-group-item">
+      <p>
+        Ten en cuenta que solo podrá existir un cuestionario para cada tipo de destinatario.
+      </p>
+    </li>
+
+  </ul>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-outline-primary" (click)="closeModal()">Volver</button>
+</div>

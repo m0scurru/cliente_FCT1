@@ -1,0 +1,19 @@
+<div class="card">
+  <div class="modal-header">
+    <h1 class="modal-title fs-4">Firma de anexo </h1>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closeModal()"></button>
+  </div>
+  <!-- Cuerpo del modal -->
+  <div class="modal-body">
+    {{ this.codigo_anexo }}
+    <div class="signature-container">
+      <signature-pad [options]="signaturePadOptions" (onBeginEvent)="drawStart()" (onEndEvent)="drawComplete()">
+      </signature-pad>
+    </div>
+    <!-- Botones -->
+    <div class="buttons">
+      <button (click)="clearSignature()" class="btn btn-primary">Limpiar</button>
+      <button (click)="savePad()" class="btn btn-warning">Guardar</button>
+    </div>
+  </div>
+</div>

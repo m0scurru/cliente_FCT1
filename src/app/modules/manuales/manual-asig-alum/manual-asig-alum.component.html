@@ -1,0 +1,106 @@
+<div class="modal-header">
+    <h1 class="modal-title fs-2">Manual de asignación de alumnos a empresas</h1>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar" (click)="closeModal()"></button>
+</div>
+<div class="modal-body p-3">
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+            <h2 class="fs-4 text-info">Vistazo general</h2>
+            <p>Lo primero que vemos arriba es el grupo al que pertenecen estos alumnos, abajo a la izquierda los alumnos que aún no no están asignados a ninguna empresa, a la derecha las empresas que solicitan alumnos de este ciclo, y dentro de estas empresas
+                pueden haber alumnos que ya estén asignados a ellas, o pueden estar vacías.
+            </p>
+            <p>En la siguiente imagen puede observar cada uno de los elementos importantes de la vista, numerados.</p>
+            <img class="img-fluid" src="/assets/Manuales/asig-alum-emp/screenshot_00.png" alt="Captura de pantalla con la vista de asignar alumnos.">
+        </li>
+        <li class="list-group-item">
+            <h2 class="fs-4 text-info">1. Nombre del ciclo</h2>
+            <div class="d-flex justify-content-between align-items-center">
+                <img src="/assets/Manuales/asig-alum-emp/screenshot_01.jpg" alt="Captura de pantalla con el nombre del ciclo" class="img-fluid me-3">
+                <div>
+                    <p>Este es el nombre del ciclo del tutor que está dentro de la aplicación, y al que pertenecen los alumnos que hay abajo.
+                    </p>
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <h2 class="fs-4 text-info">2. Alumnos sin asignar</h2>
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <p>Estos son los alumnos que aún no han sido asignados a una empresa.</p>
+                </div>
+                <img src="/assets/Manuales/asig-alum-emp/screenshot_02.jpg" alt="Captura de pantalla de las empresas" class="img-fluid ms-3 border border-dark">
+            </div>
+        </li>
+        <li class="list-group-item">
+            <h2 class="fs-4 text-info">3. Empresas</h2>
+            <p>Estas son las empresas que están solicitando alumnos de este ciclo, los elementos que hay dentro los explico más adelante.</p>
+            <img src="/assets/Manuales/asig-alum-emp/screenshot_03.jpg" alt="GIF que ejemplifica la búsqueda en la tabla de gestión de empresas" class="img-fluid me-3 border border-dark">
+        </li>
+        <li class="list-group-item">
+            <h2 class="fs-4 text-info">4. Nombre de la empresa</h2>
+            <p>Es el nombre de esa empresa que está solicitando alumnos.</p>
+            <img src="/assets/Manuales/asig-alum-emp/screenshot_04.jpg" alt="Captura de pantalla que muestra el nombre de la empresa" class="img-fluid me-3 border border-dark">
+        </li>
+        <li class="list-group-item">
+            <h2 class="fs-4 text-info">5. Responsable de la empresa</h2>
+            <p>Este es el nombre del responsable de esa empresa, el cual se puede editar.</p>
+            <img src="/assets/Manuales/asig-alum-emp/screenshot_05.jpg" alt="Captura de pantalla que muestra el nombre del responsable de la empresa" class="img-fluid me-3 border border-dark">
+        </li>
+        <li class="list-group-item">
+            <h2 class="fs-4 text-info">6. Nombre del alumno</h2>
+            <div class="d-flex justify-content-between align-items-center">
+                <img src="/assets/Manuales/asig-alum-emp/screenshot_06.jpg" alt="Captura de pantalla con el nombre del alumno asignado" class="img-fluid me-3">
+                <div>
+                    <p>Es el nombre del alumno que está asignado.</p>
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <h2 class="fs-4 text-info">7. Horario del alumno</h2>
+            <div class="d-flex justify-content-between align-items-center">
+                <img src="/assets/Manuales/asig-alum-emp/screenshot_07.jpg" alt="Captura de pantalla con el horario del alumno en la empresa" class="img-fluid me-3">
+                <div>
+                    <p>Este es el horario que tendrá el alumno durante sus prácticas.</p>
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <h2 class="fs-4 text-info">8. Fecha de inicio de prácticas</h2>
+            <p>Esta es la fecha en la que el alumno empezará las prácticas</p>
+            <img src="/assets/Manuales/asig-alum-emp/screenshot_08.jpg" alt="Captura de pantalla con la fecha de inicio de prácticas" class="img-fluid me-3">
+        </li>
+        <li class="list-group-item">
+            <h2 class="fs-4 text-info">9. Fecha de fin de prácticas</h2>
+            <p>Esta es la fecha en la que el alumno finalizará las prácticas.</p>
+            <img src="/assets/Manuales/asig-alum-emp/screenshot_09.jpg" alt="Captura de pantalla con la fecha de fin de prácticas" class="img-fluid me-3">
+        </li>
+        <li class="list-group-item">
+            <h2 class="fs-4 text-info">10. Guardar</h2>
+            <p>Al pulsar este botón se guardarán los cambios realizados</p>
+            <img src="/assets/Manuales/asig-alum-emp/guardar.jpg" alt="Captura de pantalla con el boton guardar" class="img-fluid me-3">
+        </li>
+        <li class="list-group-item">
+            <h2 class="fs-4 text-info">11. Generar Word</h2>
+            <p>Al pulsar este botón se generara el word correspondiente</p>
+            <img src="/assets/Manuales/asig-alum-emp/generar.jpg" alt="Captura de pantalla con el boton generar word" class="img-fluid me-3">
+        </li>
+        <li class="list-group-item">
+            <h2 class="fs-4 text-info">12. Subir Anexo</h2>
+            <p>Al pulsar este botón podrás subir tu anexo, incluso en .pdf firmado</p>
+            <img src="/assets/Manuales/asig-alum-emp/subir.jpg" alt="Captura de pantalla con el boton subir anexo" class="img-fluid me-3">
+        </li>
+        <li class="list-group-item">
+            <h2 class="fs-4 text-info">13. Descargar Anexo</h2>
+            <p>Al pulsar este botón podrás descargar el anexo correspondiente</p>
+            <img src="/assets/Manuales/asig-alum-emp/descargar.jpg" alt="Captura de pantalla con el boton descargar anexo" class="img-fluid me-3">
+        </li>
+        <li class="list-group-item">
+            <h2 class="fs-4 text-info">Mover a los alumnos</h2>
+            <p>Para mover a los alumnos es tal como se ve en el siguiente gif, solo pinchas sobre él y lo mueves donde corresponda.</p>
+            <img src="/assets/Manuales/asig-alum-emp/grabacion_00.GIF" alt="GIF que muestra como mover a los alumnos" class="img-fluid me-3 border border-dark">
+        </li>
+    </ul>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-outline-primary" (click)="closeModal()">Volver</button>
+</div>

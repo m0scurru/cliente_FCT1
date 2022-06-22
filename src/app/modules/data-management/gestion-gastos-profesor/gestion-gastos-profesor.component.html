@@ -1,0 +1,127 @@
+<!-- Títulos de las secciones -->
+<div class="row">
+  <div class="page-header d-flex justify-content-between pb-3">
+    <h1 class="h2">Gestión de gastos de {{this.curso}}</h1>
+    <button type="button" class="btn btn-outline-default mr-2" placement="left"
+      ngbTooltip="Haga clic para acceder a la ayuda de esta sección" (click)="abrirAyuda()">?</button>
+  </div>
+</div>
+
+<!-- Contenido de las secciones -->
+<div class="card p-3">
+  <div class="d-flex align-items-center justify-content-between">
+    <div>
+      <button class="btn btn-outline-primary dropdown-toggle me-2" type="button" id="dropdownMenuButton1"
+        data-bs-toggle="dropdown" aria-expanded="false">
+        <svg width="16" height="16" class="bi me-1">
+          <use xlink:href="#nuevo" />
+        </svg> Añadir alumno
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <li (click)="registrarAlumno(alumno)" role="button" class="dropdown-item"
+          *ngFor="let alumno of this.gastoProfesor?.alumnosSinGasto">
+          {{ alumno.nombre + ' ' + alumno.apellidos }}
+        </li>
+      </ul>
+
+      <button (click)="this.descargarAnexo()" class="btn btn-outline-primary">Generar Anexo VI</button>
+    </div>
+    <div class="btn-group" role="group" aria-label="Confirmación de trayectos y subida de anexo firmado">
+      <button class="btn {{ gastoProfesor?.gastoTotalGrupo == 0 ? 'text-muted' : 'btn-outline-success'}}"
+        ngbTooltip="Confirmar trayectos y generar Anexo VII" placement="left" aria-label="Confirmar trayectos y generar Anexo VII"
+        (click)="confirmarTrayectos()" [disabled]="gastoProfesor?.gastoTotalGrupo == 0 ? true : null">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg"
+          viewBox="0 0 16 16">
+          <path
+            d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z" />
+        </svg>
+      </button>
+      <label for="file" role="button" class="btn {{ gastoProfesor?.gastoTotalGrupo == 0 ? 'text-muted' : 'btn-outline-primary'}} rounded-end"
+        ngbTooltip="Subir Anexo VII firmado" placement="left" aria-label="Subir Anexo VII firmado">
+        <a>
+          <svg class="bi" width="16" height="16">
+            <use xlink:href="#firma" />
+          </svg>
+        </a>
+      </label>
+      <input hidden role="button" type="file" id="file" accept="application/pdf" (change)="subirAnexoVII($event)"
+        [disabled]="gastoProfesor?.gastoTotalGrupo == 0 ? true : null">
+
+    </div>
+  </div>
+  <div class="d-flex pt-3 justify-content-end">
+    <span>Total gastos grupo: <strong>{{this.gastoProfesor?.gastoTotalGrupo?.toFixed(2)}}</strong> €</span>
+  </div>
+  <!-- Tabla -->
+  <div class="row">
+    <div class="col-12 p-2 table-responsive">
+      <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped table-hover">
+        <thead class="table-primary text-white">
+          <tr>
+            <th>Nombre del alumno</th>
+            <th>Desplazamiento</th>
+            <th>&Sigma; Gastos de transporte</th>
+            <th>&Sigma; Otros gastos</th>
+            <th>Total gastos</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let gastoAlumno of this.gastoProfesor?.gastos">
+            <!-- #region Datos -->
+            <td class="align-middle" attr.aria-label="Ver en detalle a {{gastoAlumno.nombre_alumno}}">
+              {{gastoAlumno.nombre_alumno}}
+            </td>
+            <td class="align-middle" attr.aria-label="Ver en detalle a {{gastoAlumno.nombre_alumno}}">
+              {{gastoAlumno.tipo_desplazamiento}}
+            </td>
+            <td class="align-middle" attr.aria-label="Ver en detalle a {{gastoAlumno.nombre_alumno}}">
+              <span class="pt-1 float-start">
+                {{(gastoAlumno!.sumatorio_gasto_transporte_publico!
+                + gastoAlumno!.sumatorio_gasto_vehiculo_privado!).toFixed(2)}} €
+              </span>
+              <button class="btn btn-outline-success ms-5 me-2 float-end"
+                (click)="this.nuevoTicketTransporte(gastoAlumno.dni_alumno!)">
+                <svg width="16" height="16" class="bi">
+                  <use xlink:href="#nuevo" />
+                </svg>
+              </button>
+            </td>
+            <td class="align-middle" attr.aria-label="Ver en detalle a {{gastoAlumno.nombre_alumno}}">
+              <span class="pt-1 float-start">
+                {{(gastoAlumno!.sumatorio_gasto_manutencion)}} €
+              </span>
+              <button class="btn btn-outline-success ms-5 me-2 float-end"
+                (click)="this.nuevoTicketManutencion(gastoAlumno.dni_alumno!)">
+                <svg width="16" height="16" class="bi">
+                  <use xlink:href="#nuevo" />
+                </svg>
+              </button>
+            </td>
+            <td class="align-middle" attr.aria-label="Ver en detalle a {{gastoAlumno.nombre_alumno}}">
+              {{gastoAlumno.total_gastos?.toFixed(2)}} €
+            </td>
+            <!-- #endregion -->
+            <!-- Acciones -->
+            <td class="text-center">
+              <button class="btn btn-outline-warning px-2 py-1 mx-3"
+                (click)="mostrarGastoAlumno(gastoAlumno.dni_alumno!)" placement="left" ngbTooltip="Editar alumno"
+                attr.aria-label="Editar a {{gastoAlumno.nombre_alumno}}">
+                <svg class="bi" width="16" height="16">
+                  <use xlink:href="#lapiz" />
+                </svg>
+              </button>
+              <button class="btn btn-outline-danger px-2 py-1 mx-3" (click)="borrarGastoAlumno(gastoAlumno.dni_alumno!)"
+                placement="left" ngbTooltip="Eliminar alumno"
+                attr.aria-label="Eliminar a {{gastoAlumno.nombre_alumno}}">
+                <svg class="bi" width="16" height="16">
+                  <use xlink:href="#papelera" />
+                </svg>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

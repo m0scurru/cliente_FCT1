@@ -1,0 +1,39 @@
+<div class="modal-header">
+  <h1 class="modal-title fs-2">Manual de subida de carga de datos</h1>
+  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar" (click)="closeModal()"></button>
+</div>
+<div class="modal-body p-3">
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      <h2 class="fs-4 text-info">Vistazo general</h2>
+      <p>En esta sección podrán subirse los distintos ficheros maestros CSV obtenidos de la plataforma Delphos.
+        Mediante estos ficheros CSV se podrán dar de alta nuevos datos en su centro educativo.</p>
+      <p>Se pueden añadir a cada una de las cajas arrastrándolos a su área correspondiente o bien
+        haciendo clic en el icono de documento, tras lo cual se abrirá un cuadro de diálogo que le permitirá seleccionar
+        el fichero que desee cargar</p>
+      <p>Al finalizar, los datos se cargarán en el sistema presionando el botón 'Guardar datos'</p>
+      <img src="/assets/Manuales/csv-upload/subir.gif" alt="GIF que ejemplifica la carga de ficheros"
+        class="img-fluid me-3 border border-dark">
+      <p><br>Se detallan a continuación y son los siguientes:</p>
+    </li>
+    <li class="list-group-item">
+      <h2 class="fs-4 text-info">1. Alumnos</h2>
+      <p>Contiene los datos personales de los alumnos (DNI, nombre y apellidos, correo electrónico, ...)</p>
+    </li>
+    <li class="list-group-item">
+      <h2 class="fs-4 text-info">2. Matrículas</h2>
+      <p>Contiene el ciclo en el que está matriculado cada alumno</p>
+    </li>
+    <li class="list-group-item">
+      <h2 class="fs-4 text-info">3. Unidades</h2>
+      <p>Contiene los tutores asociados a cada uno de los ciclos</p>
+    </li>
+    <li class="list-group-item">
+      <h2 class="fs-4 text-info">4. Profesores</h2>
+      <p>Contiene los datos personales de los profesores (DNI, nombre y apellidos, correo electrónico, ...)</p>
+    </li>
+  </ul>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-outline-primary" (click)="closeModal()">Volver</button>
+</div>

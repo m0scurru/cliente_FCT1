@@ -1,0 +1,153 @@
+<ng-container *ngIf="usuario">
+  <nav>
+    <div class="position-sticky pt-4">
+      <ul class="nav nav-pills flex-column">
+        <li *ngIf="usuario.isDirector() || usuario.isJefatura()">
+          <a class="nav-link link-white" routerLinkActive="active" routerLink="data-upload/csv-upload"
+            aria-current="page">
+            <svg width="20" height="20" class="bi me-2">
+              <use xlink:href="#CSV" />
+            </svg> Carga de datos
+          </a>
+        </li>
+        <li *ngIf="usuario.isProfesor()">
+          <a routerLinkActive="active" routerLink="data-management/gestion-empresas" class="nav-link link-white"
+            aria-current="page">
+            <svg width="20" height="20" class="bi me-2">
+              <use xlink:href="#A0" />
+            </svg> Empresas
+          </a>
+        </li>
+        <li *ngIf="usuario.isDirector() || usuario.isJefatura() || usuario.isTutor()">
+          <a class="nav-link link-white" routerLinkActive="active" routerLink="data-management/gestion-alumnos"
+            aria-current="page">
+            <svg width="20" height="20" class="bi me-2">
+              <use xlink:href="#birrete" />
+            </svg> Alumnos
+          </a>
+        </li>
+        <li *ngIf="usuario.isTutor()">
+          <a routerLink="data-management/asig-alum-empresa" routerLinkActive="active" class="nav-link link-white">
+            <svg width="20" height="20" class="bi me-2">
+              <use xlink:href="#A1" />
+            </svg> FCT
+          </a>
+        </li>
+        <li
+          *ngIf="usuario.isResponsable() || usuario.isProfesor() || usuario.isTutorEmpresa() || usuario.isTrabajador()">
+          <a routerLink="data-management/seguimiento_tutores" routerLinkActive="active" class="nav-link link-white">
+            <svg width="20" height="20" class="bi me-2">
+              <use xlink:href="#A3" />
+            </svg> Seguimiento
+          </a>
+        </li>
+        <li *ngIf="usuario.isAlumno()">
+          <a routerLink="data-management/seguimiento" routerLinkActive="active" class="nav-link link-white">
+            <svg width="20" height="20" class="bi me-2">
+              <use xlink:href="#A3" />
+            </svg> Seguimiento
+          </a>
+        </li>
+        <li *ngIf="usuario.isAlumno()">
+          <a routerLink="data-management/anexos-alumnos" routerLinkActive="active" class="nav-link link-white">
+            <svg width="20" height="20" class="bi me-2">
+              <use xlink:href="#crud-anexos" />
+            </svg> Anexos
+          </a>
+        </li>
+        <li *ngIf="usuario.isProfesor()">
+          <a routerLink="data-management/crud-anexos" routerLinkActive="active" class="nav-link link-white">
+            <svg width="20" height="20" class="bi me-2">
+              <use xlink:href="#crud-anexos" />
+            </svg> Anexos generados
+          </a>
+        </li>
+        <li *ngIf="usuario.isProfesor()">
+          <a routerLink="data-management/historial-anexos" routerLinkActive="active" class="nav-link link-white">
+            <svg width="20" height="20" class="bi me-2">
+              <use xlink:href="#historial-anexos" />
+            </svg> Historial Anexos
+          </a>
+        </li>
+        <li *ngIf="usuario.isDirector() || usuario.isJefatura()">
+          <a routerLinkActive="active" routerLink="data-management/crud-profesores" class="nav-link link-white"
+            aria-current="page">
+            <svg width="20" height="20" class="bi me-2">
+              <use xlink:href="#profesor" />
+            </svg> Profesores
+          </a>
+        </li>
+
+        <li *ngIf="usuario.isTutor()">
+          <a routerLinkActive="active" routerLink="data-management/programa-formativo" class="nav-link link-white"
+            aria-current="page">
+            <svg width="20" height="20" class="bi me-2">
+              <use xlink:href="#profesor" />
+            </svg> AnexoII y IV
+          </a>
+        </li>
+        <li *ngIf="usuario.isAlumno()">
+          <a routerLinkActive="active" routerLink="data-management/gestion-gastos-alumno" class="nav-link link-white"
+            aria-current="page">
+            <svg width="20" height="20" class="bi me-2">
+              <use xlink:href="#gastos" />
+            </svg> Gestión de gastos
+          </a>
+        </li>
+        <li *ngIf="usuario.isTutor() ">
+          <a routerLinkActive="active" routerLink="data-management/gestion-gastos-profesor" class="nav-link link-white"
+            aria-current="page">
+            <svg width="20" height="20" class="bi me-2">
+              <use xlink:href="#gastos" />
+            </svg> Gestión de gastos
+          </a>
+        </li>
+        <li *ngIf="usuario.isDirector() || usuario.isJefatura()">
+          <a routerLinkActive="active" routerLink="cuestionarios/listar-cuestionarios" class="nav-link link-white"
+            aria-current="page">
+            <svg width="20" height="20" class="bi me-2">
+              <use xlink:href="#cuestionario"/>
+            </svg> Cuestionarios
+          </a>
+        </li>
+
+        <li *ngIf="usuario.isAlumno() || usuario.isTutorEmpresa()">
+
+          <a *ngIf="usuario.isAlumno()" routerLinkActive="active" routerLink="/cuestionarios/contestar-cuestionario/alumno" class="nav-link link-white"
+            aria-current="page">
+            <svg width="20" height="20" class="bi me-2">
+              <use xlink:href="#cuestionario"/>
+            </svg> Cuestionario
+          </a>
+
+          <a *ngIf="usuario.isTutorEmpresa()" routerLinkActive="active" routerLink="/cuestionarios/listar-cuestionarios-tutor-empresa" class="nav-link link-white"
+            aria-current="page">
+            <svg width="20" height="20" class="bi me-2">
+              <use xlink:href="#cuestionario"/>
+            </svg> Cuestionario
+          </a>
+
+        </li>
+
+        <li *ngIf="usuario.isJefatura()">
+          <a routerLinkActive="active" routerLink="cuestionarios/listar-respuestas" class="nav-link link-white"
+            aria-current="page">
+            <svg width="20" height="20" class="bi me-2">
+              <use xlink:href="#cuestionario" />
+            </svg> Respuestas Cuestionarios
+          </a>
+        </li>
+
+        <li *ngIf="usuario.isTutor()">
+          <a routerLinkActive="active" routerLink="cuestionarios/listar-respuestas-tutor" class="nav-link link-white"
+            aria-current="page">
+            <svg width="20" height="20" class="bi me-2">
+              <use xlink:href="#cuestionario" />
+            </svg> Respuestas Cuestionarios
+          </a>
+        </li>
+
+      </ul>
+    </div>
+  </nav>
+</ng-container>

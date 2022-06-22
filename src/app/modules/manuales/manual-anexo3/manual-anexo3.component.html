@@ -1,0 +1,117 @@
+<div class="modal-header">
+  <h1 class="modal-title fs-2">Manual de generación de la hoja de seguimiento</h1>
+  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar" (click)="closeModal()"></button>
+</div>
+<div class="modal-body p-3">
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      <h2 class="fs-4 text-info">Vistazo general</h2>
+      <p>En la vista de gestión de la hoja de seguimiento se muestran por un lado (A) los datos principales, y por otro lado (B) se encuentra el registro de las jornadas diarias que va implementando el alumno.</p>
+      <p>En la siguiente imagen puede observar ambas partes:</p>
+      <img class="img-fluid" src="/assets/Manuales/hoja-seguimiento/Screenshot_00.png"
+        alt="Captura de pantalla con la vista la generación de la hoja de seguimiento">
+      <p>En las siguientes imágenes puede observar cada uno de los elementos de la parte superior (A), y de la parte central (B), numerados.</p>
+      <img class="img-fluid" src="/assets/Manuales/hoja-seguimiento/Screenshot_01.png"
+        alt="Captura de pantalla parte superior de la vista">
+
+        <img class="img-fluid" src="/assets/Manuales/hoja-seguimiento/Screenshot_04.png"
+        alt="Captura de pantalla parte superior de la vista">
+    </li>
+    <li class="list-group-item">
+      <h2 class="fs-4 text-info">1. Añadir departamento</h2>
+      <div class="d-flex justify-content-between align-items-center">
+        <img src="/assets/Manuales/hoja-seguimiento/Screenshot_02.png"
+          alt="Captura de pantalla con el botón para añadir el departamento del alumno" class="img-fluid me-3">
+        <div>
+          <p>Este botón, situado en la parte superior, permite añadir el departamento al que está asignado el alumno dentro de la empresa en la que realiza las prácticas</p>
+          <p>Una vez añadido el departamento, no habrá que volver a hacerlo puesto que se quedará ya establecido</p>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <h2 class="fs-4 text-info">2. Cambiar tutor asignado en la empresa</h2>
+      <div class="d-flex justify-content-between align-items-center">
+        <img src="/assets/Manuales/hoja-seguimiento/Screenshot_03.png"
+          alt="Captura de pantalla del botón para cambiar de tutor en la empresa" class="img-fluid me-3">
+        <div>
+          <p>Al pulsar este botón, situado en la parte superior,aparecerá un modal donde tendrá la opción de cambiar su tutor en la empresa.</p>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <h2 class="fs-4 text-info">3. Añadir nueva jornada</h2>
+      <div class="d-flex justify-content-between align-items-center">
+        <img src="/assets/Manuales/hoja-seguimiento/Screenshot_05.png"
+          alt="Captura de pantalla del botón para añadir una nueva jornada" class="img-fluid me-3">
+        <div>
+          <p>Al pulsar este botón, situado en la parte central, aparecerá un modal donde tendrá la que rellenar los campos necesarios para añadir una nueva jornada.
+            El campo "Observaciones" es opcional.
+          </p>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <h2 class="fs-4 text-info">4. Descargar hoja de seguimiento</h2>
+      <div class="d-flex justify-content-between align-items-center">
+        <img src="/assets/Manuales/hoja-seguimiento/Screenshot_06.png"
+          alt="Captura de pantalla del botón para descargar la hoja de seguimiento generada" class="img-fluid me-3">
+        <div>
+          <p>Este botón, situado en la parte lateral derecha de la vista, aparecerá cada  vez que rellene 5 jornadas nuevas.
+          </p>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <h2 class="fs-4 text-info">5. Cantidad de registros a mostrar</h2>
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+          <p>Puede clickear sobre el desplegable para seleccionar cuántos registros quiere ver en cada página</p>
+          <p class="m-0">Mostrar más de 50 registros puede reducir el rendimiento de la aplicación</p>
+        </div>
+        <img src="/assets/Manuales/hoja-seguimiento/Screenshot_07.png"
+          alt="Captura de pantalla del desplegable de mostrar jornadas" class="img-fluid ms-3 border border-dark">
+      </div>
+    </li>
+
+    <li class="list-group-item">
+      <h2 class="fs-4 text-info">6. Búsqueda por cualquier campo</h2>
+      <p>Puede buscar jornadas registradas usando la barra de búsquedas en la parte superior derecha de la tabla</p>
+      <img src="/assets/Manuales/hoja-seguimiento/Screenshot_08.png"
+        alt="Captura de pantalla del campo búsqueda"
+        class="img-fluid me-3 border border-dark">
+      <p>Puede buscar una jornada por cualquiera de los campos de la tabla: Jornada, Fecha, Actividades realizadas, Observaciones y Horas
+      </p>
+    </li>
+
+
+    <li class="list-group-item">
+      <h2 class="fs-4 text-info">7. Ordenar según campo</h2>
+      <p>Puede ordenar las jornadas en orden ascendente o descendente de cualquiera de los campos de la tabla clickeando
+        sobre el título de la columna</p>
+      <p>En este caso, se muestran las fechas ordenadas ascendentemente</p>
+      <img src="/assets/Manuales/hoja-seguimiento/Screenshot_09.png"
+        alt="Captura de pantalla que muestra las jornadas ordenadas ascendentemente por fecha"
+        class="img-fluid me-3 border border-dark">
+    </li>
+
+    <li class="list-group-item">
+      <h2 class="fs-4 text-info">8. Editar una jornada</h2>
+      <div class="d-flex justify-content-between align-items-center">
+        <img src="/assets/Manuales/hoja-seguimiento/Screenshot_10.png"
+          alt="Captura de pantalla del botón para descargar la hoja de seguimiento generada" class="img-fluid me-3">
+        <div>
+          <p>Este botón, situado en cada registro de la tabla, abrirá un modal que le permitirá editar los datos de cada registro.
+            El campo "observaciones" es opcional.
+          </p>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <h2 class="fs-4 text-info">9. Navegar por las páginas de datos</h2>
+      <p>Utilice los botones de la esquina inferior derecha de la pantalla para navegar por las páginas de datos</p>
+    </li>
+  </ul>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-outline-primary" (click)="closeModal()">Volver</button>
+</div>

@@ -1,0 +1,29 @@
+.contenido {
+  overflow-y: auto;
+  height: calc(100vh - 66px - 20px);
+  background-color: $light;
+}
+
+.login {
+  overflow-y: auto;
+  height: calc(100vh - 40px);
+  background-color: $light;
+}
+
+body {
+  overflow: hidden;
+}
+
+/*********************************************************/
+/**************Estilos del cuadro de diálogo**************/
+/*********************************************************/
+// Color del cuadro de diálogo
+.mat-dialog-container {
+  background-color: $light !important;
+  color: $dark !important;
+}
+
+// Esto es para que el cuadro de diálogo aparezca encima de cualquier modal
+.cdk-overlay-container {
+  z-index: 2000;
+}

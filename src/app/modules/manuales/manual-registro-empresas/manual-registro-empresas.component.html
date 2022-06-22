@@ -1,0 +1,90 @@
+<div class="modal-header">
+  <h1 class="modal-title fs-2">Manual de registro de empresas</h1>
+  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar" (click)="closeModal()"></button>
+</div>
+<div class="modal-body p-3">
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      <h2 class="fs-4 text-info">Vistazo general</h2>
+      <p>En esta serie de pantallas podrá registrar una empresa en la aplicación para contar con ella en el proceso de
+        las FCT. Al terminar el registro, se generará el Anexo 0 o 0A, de convenio entre su centro de estudios y la
+        empresa que registre</p>
+      <p class="m-0">Para realizar el registro necesitará los siguientes datos:</p>
+      <ul class="mb-2">
+        <li>
+          <span class="fw-bold">Del representante legal</span>: DNI, nombre completo y correo electrónico.
+        </li>
+        <li>
+          <span class="fw-bold">De la empresa</span>: CIF, nombre, correo electrónico, teléfono y si es pública o
+          privada.
+        </li>
+        <li>
+          <span class="fw-bold">Del centro de trabajo</span>: localidad, provincia, dirección y código postal.
+        </li>
+        <li>
+          <span class="fw-bold">Ciclos de interés</span>: Ciclos Formativos de los que la empresa quiere alumnos en
+          prácticas.
+        </li>
+      </ul>
+      <p>En caso de disponer de varios centros de trabajo, registre los datos del centro de trabajo principal</p>
+    </li>
+    <li class="list-group-item">
+      <h2 class="fs-4 text-info">Vistazo general</h2>
+      <img class="img-fluid mb-2" src="/assets/Manuales/registro-empresas/screenshot_00.png"
+        alt="Captura de pantalla con la vista del registro de empresas (representante legal)">
+      <p>El registro de empresas está dividido en cinco partes: tres para introducir datos, una cuarta para asignar
+        ciclos a la empresa y quina quinta que le servirá para revisar la veracidad de los datos y confirmarlos</p>
+      <p class="m-0">El progreso del registro se marca en la parte superior de la pantalla:</p>
+      <img class="img-fluid mb-2" src="/assets/Manuales/registro-empresas/screenshot_01.png"
+        alt="Captura de pantalla: barra de progreso situada en 1. Representante">
+      <p class="m-0">Los datos se introducen en la parte central de la pantalla:</p>
+      <img class="img-fluid mb-2" src="/assets/Manuales/registro-empresas/screenshot_02.png"
+        alt="Captura de pantalla: introducción de datos del representante">
+    </li>
+    <li class="list-group-item">
+      <h2 class="fs-4 text-info">1. Barra de progreso</h2>
+      <p>La barra de progreso irá avanzando según avance en el registro.</p>
+      <img class="img-fluid mb-2" src="/assets/Manuales/registro-empresas/screenshot_03.png"
+        alt="Captura de pantalla: barra de progreso explicada en detalle. Las secciones anteriores son más oscuras, la actual más clara">
+      <p>Podrá volver a las secciones previas clickeando sobre la barra de progreso. También podrá volver a secciones
+        siguientes si ya estaban habilitadas anteriormente</p>
+    </li>
+    <li class="list-group-item">
+      <h2 class="fs-4 text-info">2. Completar el formulario</h2>
+      <p>Introduzca los datos de formulario correctamente y clickee en "Aceptar y continuar" para avanzar a la siguiente
+        sección</p>
+      <p>Si introduce algún dato incorrectamente, se le avisará para que pueda corregirlo</p>
+    </li>
+    <li class="list-group-item">
+      <h2 class="fs-4 text-info">3. Asignación de ciclos</h2>
+      <img class="img-fluid mb-2" src="/assets/Manuales/registro-empresas/ciclos01.png"
+        alt="Captura de pantalla: vista de selección de ciclos.">
+      <p>Clickee sobre los ciclos en los que la empresa que está registrando está interesada. Puede ver el nombre
+        completo de cada ciclo manteniendo el cursor sobre él</p>
+      <p>Puede filtrar los ciclos por familia profesional</p>
+      <p>Los ciclos seleccionados aparecerán en la parte superior del panel de ciclos. Puede deseleccionar ciclos
+        volviendo a pulsar sobre ellos o deseleccionarlos todos pulsando en "Limpiar selección"</p>
+      <p>Finalice la asignación de ciclos clickeando en "Aceptar y continuar"</p>
+    </li>
+    <li class="list-group-item">
+      <h2 class="fs-4 text-info">4. Resumen</h2>
+      <p>En esta sección aparecerán todos los valores insertados anteriormente, ofreciendo la posibilidad de
+        comprobarlos antes de registrar la empresa.</p>
+      <img class="img-fluid mb-2" src="/assets/Manuales/registro-empresas/boton_registrar.png"
+        alt="Captura de pantalla: vista general de la ventana resumen.">
+      <p>Gracias a la barra de progreso, puede retroceder a cualquiera de las partes anteriores del registro
+        tan solo clickeando en ella para cambiar el valor de cualquier dato introducido anteriormente.
+      </p>
+      <img class="img-fluid mb-2" src="/assets/Manuales/registro-empresas/breadcrum.png"
+        alt="Captura de pantalla: barra de progreso.">
+      <p>Con el registro finalizado, tiene la opción de establecer los términos del convenio en el momento o dejarlo
+        para más adelante. Para ver en detalle cómo rellenar los datos de convenio, visite el manual de "Gestión de
+        Empresas"</p>
+      <img class="img-fluid mb-2" src="/assets/Manuales/registro-empresas/dialogo_convenio.png"
+        alt="Captura de pantalla: diálogo de convenio, en el que se da la opción al usuario de hacer el convenio inmediatamente o más tarde.">
+    </li>
+  </ul>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-outline-primary" (click)="closeModal()">Volver</button>
+</div>

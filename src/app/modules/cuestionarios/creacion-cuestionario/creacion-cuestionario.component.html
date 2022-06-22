@@ -1,0 +1,100 @@
+<div class="container">
+
+  <!--Títulos de las secciones-->
+  <div class="row">
+    <div class="page-header d-flex justify-content-between pb-3">
+      <h1 class="h2">Añadir cuestionario</h1>
+      <button type="button" class="btn btn-outline-default mr-2" placement="left"
+        ngbTooltip="Haga clic para acceder a la ayuda de esta sección" (click)="abrirAyuda()">?</button>
+    </div>
+  </div>
+
+  <!--Contenido de las secciones-->
+  <div class="p-3" >
+    <div class="row">
+      <div class="col-sm-12">
+
+        <form [formGroup]="cuestionarioForm" (ngSubmit)="onSubmit()">
+
+          <div class="row mb-2 bg-primary p-4 border border-primary rounded text-white">
+            <p>
+              <label for="titulo">Nombre del formulario:</label>
+              <input type="text" id="titulo" name="titulo" formControlName="titulo" class="form-control"
+              [ngClass]="{
+                'is-invalid': cuestionarioForm.controls['titulo'].invalid,
+                'is-valid': cuestionarioForm.controls['titulo'].valid
+              }"
+              >
+            </p>
+
+            <p>
+              <label for="destinatario">Destinatario:</label>
+              <select formControlName="destinatario" class="form-control form-select"
+              [ngClass]="{
+                'is-invalid': cuestionarioForm.controls['destinatario'].invalid,
+                'is-valid': cuestionarioForm.controls['destinatario'].valid
+              }"
+              >
+                <option value="alumno" class="p-y-2">Alumno</option>
+                <option value="empresa" class="p-y-2">Empresa</option>
+              </select>
+            </p>
+          </div>
+
+          <br>
+
+          <div class="row mb-2 p-4 border border-primary rounded">
+            <table class="table-insertar-preguntas" formArrayName="preguntas">
+
+              <tr>
+                <th colspan="2">Añadir pregunta:</th>
+                <th width="150px"><button type="button" (click)="addPregunta()" class="btn btn-outline-primary">Añadir pregunta</button></th>
+              </tr>
+
+
+              <tr *ngFor="let pregunta of preguntas().controls; let i=index" [formGroupName]="i">
+
+                <td class="mb-2 p-2">
+                    Tipo:
+                    <select formControlName="tipo" class="form-control form-select"
+                    [ngClass]="{
+                      'is-invalid': pregunta.get('tipo')?.hasError('required'),
+                      'is-valid': !pregunta.get('tipo')?.hasError('required')
+                    }"
+                    >
+                      <option value="rango" class="p-y-2">Rango</option>
+                      <option value="texto" class="p-y-2">Texto</option>
+                    </select>
+                </td>
+                <td>
+                    Pregunta:
+                    <input type="text" formControlName="pregunta" class="form-control"
+                    [ngClass]="{
+                      'is-invalid': pregunta.get('pregunta')?.hasError('required'),
+                      'is-valid': !pregunta.get('pregunta')?.hasError('required')
+                    }"
+                    >
+                </td>
+                <td>
+                    <button (click)="borrarPregunta(i)" class="btn btn-warning btn-table-borrar-cuestionario">Borrar</button>
+                </td>
+
+              </tr>
+
+            </table>
+          </div>
+
+          <br>
+          <hr>
+
+          <button type="submit" [disabled]="!cuestionarioForm.valid" class="btn btn-primary m-l-2 btn-guardar">Guardar</button>
+          <button routerLink="/cuestionarios/listar-cuestionarios" class="btn btn-outline-warning m-l-2" aria-label="listarCuestionario">Cancelar</button>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+
+</div>
